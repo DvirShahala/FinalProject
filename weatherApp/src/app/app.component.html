@@ -1,0 +1,3 @@
+<app-login *ngIf="!isLogin && !isSignUp" (isLogin)='handleLogin($event)' (signUp)='handleSignUp($event)'></app-login>
+<app-sign-up *ngIf="!isLogin && isSignUp"></app-sign-up>
+<router-outlet></router-outlet>
