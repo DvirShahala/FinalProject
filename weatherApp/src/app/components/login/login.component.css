@@ -14,7 +14,10 @@
 }*/
 .background-screen {
   background-image: url("../../../assets/loginBackground.jpg");
-  height: 100%;
+  /* opacity: 0.5; */
+  min-height: 100%;
+  background-size: cover;
+  /* background-color: rgb(69, 109, 241); */
 }
 a {
   cursor: pointer;
@@ -22,4 +25,8 @@ a {
 }
 a:hover {
   text-decoration: underline;
+}
+.logo {
+  height: 120px;
+  width: 120px;
 }

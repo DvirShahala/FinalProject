@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
     this.post = formValues;
     var output = this.loginService.checkAuthenticated(this.post);
     if (output == true) {
-      this.routes.navigate(['/wheatherPage']);
+      this.routes.navigate(['/weatherPage']);
       this.isLogin.emit(true);
     } else {
       this.invalidErrorMsg = 'Invalid username or password';

@@ -1,0 +1,16 @@
+<div fxLayout="column" fxLayoutAlign="center center" class='background-screen'>
+    <div fxLayout="row" fxLayoutAlign="space-around center">
+        <mat-card *ngFor="let forecast of weatherSevenDays">
+            <mat-card-title>{{ forecast.weekday }}</mat-card-title>
+            <img [src]="forecast.iconLink" />
+            <mat-card-content>
+                <p>
+                    {{ forecast.lowTemperature | number: '1.0-0' }}°C -
+                    {{ forecast.highTemperature | number: '1.0-0' }}°C
+                </p>
+                <p>{{ forecast.utcTime | moment }}</p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <button mat-raised-button color="warn" href="/" (click)="logOut()">Log Out</button>
+</div>

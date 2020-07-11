@@ -10,9 +10,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { PopUpComponent } from './components/pop-up/pop-up.component';
-
-// import { WheatherPageComponent } from './components/wheather-page/wheather-page.component';
-// import { MomentPipe } from './/pipes/moment/moment.pipe';
+import { MomentPipe } from './pipes/moment/moment.pipe';
+import { WeatherPageComponent } from './components/weather-page/weather-page.component';
 
 
 @NgModule({
@@ -20,7 +19,9 @@ import { PopUpComponent } from './components/pop-up/pop-up.component';
     AppComponent,
     LoginComponent,
     SignUpComponent,
-    PopUpComponent    
+    PopUpComponent,
+    WeatherPageComponent,
+    MomentPipe  
   ],
   imports: [
     BrowserAnimationsModule,
@@ -31,7 +32,7 @@ import { PopUpComponent } from './components/pop-up/pop-up.component';
     ReactiveFormsModule,
     FlexLayoutModule,
     HttpClientModule,
-    HttpClientJsonpModule,
+    HttpClientJsonpModule
   ],
   providers: [],
   bootstrap: [AppComponent]
