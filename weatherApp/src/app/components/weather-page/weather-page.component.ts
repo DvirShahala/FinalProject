@@ -45,8 +45,8 @@ export class WeatherPageComponent implements OnInit {
       });
   }
 
-  logOut() {
-    localStorage.removeItem('username');
-    window.location.reload();
-  }
+  // logOut() {
+  //   localStorage.removeItem('username');
+  //   window.location.reload();
+  // }
 }

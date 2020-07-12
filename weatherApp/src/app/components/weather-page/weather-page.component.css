@@ -1,6 +1,7 @@
 .background-screen {
-    background-image: url("../../../assets/weatherBackground.jpg");
-    background-size:100% 100%;
+    /* background-image: url("../../../assets/weatherBackground.jpg"); */
+    background-color: #2a437ec0;
+    /* background-size:100% 100%; */
     height: 100%;
 }
 .mat-card:hover {
@@ -16,4 +17,7 @@ h1 {
     text-align: center;
     width: 140px;
     margin: 5px;
+}
+p {
+    font-size: 16px;
 }

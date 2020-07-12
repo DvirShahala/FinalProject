@@ -12,6 +12,9 @@ import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { PopUpComponent } from './components/pop-up/pop-up.component';
 import { MomentPipe } from './pipes/moment/moment.pipe';
 import { WeatherPageComponent } from './components/weather-page/weather-page.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { NgMatSearchBarModule } from 'ng-mat-search-bar';
+
 
 
 @NgModule({
@@ -21,7 +24,8 @@ import { WeatherPageComponent } from './components/weather-page/weather-page.com
     SignUpComponent,
     PopUpComponent,
     WeatherPageComponent,
-    MomentPipe  
+    MomentPipe,
+    NavbarComponent  
   ],
   imports: [
     BrowserAnimationsModule,
@@ -32,7 +36,8 @@ import { WeatherPageComponent } from './components/weather-page/weather-page.com
     ReactiveFormsModule,
     FlexLayoutModule,
     HttpClientModule,
-    HttpClientJsonpModule
+    HttpClientJsonpModule,
+    NgMatSearchBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
