@@ -1,5 +1,6 @@
-<div fxLayout="column" fxLayoutAlign="center center" class='background-screen'>
-    <div fxLayout="row" fxLayoutAlign="space-around center">
+<div class='background-screen'>
+    <app-navbar></app-navbar>
+    <div fxLayout="row" fxLayoutAlign="space-evenly center">
         <mat-card *ngFor="let forecast of weatherSevenDays">
             <mat-card-title>{{ forecast.weekday }}</mat-card-title>
             <img [src]="forecast.iconLink" />
@@ -12,5 +13,5 @@
             </mat-card-content>
         </mat-card>
     </div>
-    <button mat-raised-button color="warn" href="/" (click)="logOut()">Log Out</button>
+    <!-- <button mat-raised-button color="warn" href="/" (click)="logOut()">Log Out</button> -->
 </div>
