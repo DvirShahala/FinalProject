@@ -1,27 +1,11 @@
 <mat-toolbar>
-    <img class="icon" src='../../../assets/weathAirWhiteOLD.png'>
-    <span class="spacer"></span>
-
-
-    <form class="example-form">
-        <mat-form-field class="example-full-width">
-          <mat-label><span class="material-icons">search</span></mat-label>
-          <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
-          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-              {{option.name}}
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
-      </form>
-
-
-
-    <div class="temper">&nbsp; °C &nbsp;</div> | <div class="temper">&nbsp; °F &nbsp;</div>
-    <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-        <mat-icon>share</mat-icon>
-    </button> -->
-
-    <button mat-stroked-button href="/" (click)="logOut()">Log Out</button>
-
+  <img class="icon" src='../../../assets/weathAirWhiteOLD.png'>
+  <span class="spacer"></span>
+  <mat-form-field floatLabel="never">
+    <input matInput placeholder="Search City">
+    <mat-icon>search</mat-icon>
+  </mat-form-field>
+  <span class="spacer"></span>
+  <div class="temper">&nbsp; °C &nbsp;</div> | <div class="temper">&nbsp; °F &nbsp;</div>
+  <button class="logOut" mat-stroked-button href="/" (click)="logOut()">Log Out</button>
 </mat-toolbar>

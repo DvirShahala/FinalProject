@@ -1,18 +1,30 @@
+* {
+    color: white;
+}
 .spacer {
     flex: 1 1 auto;
 }
 .icon {
+    font-size: 16px;
     height: 80px;
     width: 80px;
 }
 .temper {
     cursor: pointer;
-
 }
 .mat-toolbar {
     height: 70px;
     background-color: #113076;
 }
-* {
+::placeholder { /* Chrome and firefox */
     color: white;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: white;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: white;
+}
+.logOut:hover {
+    background-color: #4e68a5c0;
 }
