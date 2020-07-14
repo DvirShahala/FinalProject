@@ -1,23 +1,48 @@
 .background-screen {
     /* background-image: url("../../../assets/weatherBackground.jpg"); */
-    background-color: #2a437ec0;
+    /* background-color: #2a437ec0; */
     /* background-size:100% 100%; */
-    height: 100%;
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(9%,#113076),to(#4da3d1));
+    /* background-image: -webkit-gradient(linear,left top,left bottom,color-stop(9%,#046f94),to(#65b7c6)); */
+    min-width: 100%;
+    min-height: 100%;
+    /* margin-bottom: 30px; */
+    /* position: fixed; */
+    /* top: 0;
+    left: 0; */
 }
-.mat-card:hover {
-    cursor: pointer;
-    background-color: rgba(236, 236, 236, 0.60);
-}
-h1 {
-    color: aliceblue;
-}
-.mat-card {
-    background-color: rgba(255, 255, 255, 0.9);
+.weekForecast {
+    background-color: rgba(255, 255, 255);
     border-radius: 7px;
+    width: 1000px;
     text-align: center;
-    width: 140px;
-    margin: 5px;
+    margin: 2% auto;
+}
+.mat-card-title {
+    margin: 4%;
+    font-weight: bold;
+}
+.mat-card-subtitle {
+    font-size: 20px;
+}
+.weeklyContent {
+    font-size: 16px;
+}
+.windContent {
+    font-size: 16px;
 }
 p {
     font-size: 16px;
+}
+.wind {
+    background-color: rgba(255, 255, 255);
+    width: 400px;
+    border-radius: 7px;
+}
+.static {
+    position: absolute;
+    background: white;
+}
+.static:hover {
+    opacity: 0;
 }

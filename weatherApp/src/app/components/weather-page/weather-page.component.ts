@@ -45,8 +45,16 @@ export class WeatherPageComponent implements OnInit {
       });
   }
 
-  // logOut() {
-  //   localStorage.removeItem('username');
-  //   window.location.reload();
-  // }
+  public getWindSpeed() {
+    return this.weatherSevenDays[0].windSpeed;
+  }
+
+  public getWindDirec() {
+    return this.weatherSevenDays[0].windDesc;
+  }
+
+  public getWindDesc() {
+    return this.weatherSevenDays[0].beaufortDescription;
+
+  }
 }
