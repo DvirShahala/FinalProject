@@ -1,39 +1,43 @@
 <div class='background-screen'>
     <app-navbar></app-navbar>
 
-    <mat-card class="weekForecast">
-        <mat-card-title>Weekly forecast</mat-card-title>
-        <div fxLayout="row" fxLayoutAlign="space-evenly center">
-            <div *ngFor="let forecast of weatherSevenDays">
-                <mat-card-subtitle>{{ forecast.weekday }}</mat-card-subtitle>
-                <img [src]="forecast.iconLink" />
-                <mat-card-content class="weeklyContent">
-                    <p>
-                        {{ forecast.lowTemperature | number: '1.0-0' }}°C -
-                        {{ forecast.highTemperature | number: '1.0-0' }}°C
-                    </p>
-                    <p>{{ forecast.utcTime | moment }}</p>
-                </mat-card-content>
-            </div>
-        </div>
-    </mat-card>
+    <mat-grid-list cols="1" rowHeight="5:1">
+        <mat-grid-tile>
+            <mat-card class="weekForecast">
+                <mat-card-title>Weekly forecast</mat-card-title>
+                <div fxLayout="row" fxLayoutAlign="space-evenly center">
+                    <div *ngFor="let forecast of weatherSevenDays">
+                        <mat-card-subtitle>{{ forecast.weekday }}</mat-card-subtitle>
+                        <img [src]="forecast.iconLink" />
+                        <mat-card-content>
+                            <p>
+                                {{ forecast.lowTemperature | number: '1.0-0' }}°C -
+                                {{ forecast.highTemperature | number: '1.0-0' }}°C
+                            </p>
+                            <p>{{ forecast.utcTime | moment }}</p>
+                        </mat-card-content>
+                    </div>
+                </div>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
 
-    <div fxLayout="row" fxLayoutAlign="space-evenly end">
+    <div fxLayout="row" fxLayoutAlign="center">
         <mat-card class="wind">
             <mat-card-title>Today Wind Indices</mat-card-title>
-            <mat-card-content class="windContent">
+            <mat-card-content>
                 <img class="static" src="../../../assets/windNoGIF.png">
                 <img class="active" src="../../../assets/windy.gif">
                 Wind Speed -
                 {{ getWindSpeed() }} km/h
             </mat-card-content>
-            <mat-card-content class="windContent">
+            <mat-card-content>
                 <img class="static" src="../../../assets/directionNoGIF.png">
                 <img class="active" src="../../../assets/direction.gif">
                 Wind Direction -
                 {{ getWindDirec() }}
             </mat-card-content>
-            <mat-card-content class="windContent">
+            <mat-card-content>
                 <img class="static" src="../../../assets/blushingNoGIF.png">
                 <img class="active" src="../../../assets/blushing.gif">
                 Feels Like -
@@ -41,29 +45,20 @@
             </mat-card-content>
         </mat-card>
 
-        <mat-card class="wind">
-            <mat-card-title>Today Wind Indices</mat-card-title>
-            <mat-card-content class="windContent">
-                <img class="static" src="../../../assets/windNoGIF.png">
-                <img class="active" src="../../../assets/windy.gif">
-                Wind Speed -
-                {{ getWindSpeed() }} km/h
+        <mat-card class="sunriseSunset">
+            <mat-card-title>Sunrise and Sunset</mat-card-title>
+            <mat-card-content>
+                <img class="static" src="../../../assets/sunriseNoGIF.png">
+                <img class="active" src="../../../assets/sunrise.gif">
+                Sunrise Time -
+                {{ getSunriseTime() }}
             </mat-card-content>
-            <mat-card-content class="windContent">
-                <img class="static" src="../../../assets/directionNoGIF.png">
-                <img class="active" src="../../../assets/direction.gif">
-                Wind Direction -
-                {{ getWindDirec() }}
-            </mat-card-content>
-            <mat-card-content class="windContent">
-                <img class="static" src="../../../assets/blushingNoGIF.png">
-                <img class="active" src="../../../assets/blushing.gif">
-                Feels Like -
-                {{ getWindDesc() }}
+            <mat-card-content>
+                <img class="static" src="../../../assets/sunsetNoGIF.png">
+                <img class="active" src="../../../assets/sunset.gif">
+                Sunset Time -
+                {{ getSunsetTime() }}
             </mat-card-content>
         </mat-card>
-
     </div>
-
-
 </div>

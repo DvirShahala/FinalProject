@@ -1,15 +1,8 @@
 .background-screen {
-    /* background-image: url("../../../assets/weatherBackground.jpg"); */
-    /* background-color: #2a437ec0; */
-    /* background-size:100% 100%; */
     background-image: -webkit-gradient(linear,left top,left bottom,color-stop(9%,#113076),to(#4da3d1));
     /* background-image: -webkit-gradient(linear,left top,left bottom,color-stop(9%,#046f94),to(#65b7c6)); */
     min-width: 100%;
     min-height: 100%;
-    /* margin-bottom: 30px; */
-    /* position: fixed; */
-    /* top: 0;
-    left: 0; */
 }
 .weekForecast {
     background-color: rgba(255, 255, 255);
@@ -25,10 +18,7 @@
 .mat-card-subtitle {
     font-size: 20px;
 }
-.weeklyContent {
-    font-size: 16px;
-}
-.windContent {
+.mat-card-content {
     font-size: 16px;
 }
 p {
@@ -37,6 +27,14 @@ p {
 .wind {
     background-color: rgba(255, 255, 255);
     width: 400px;
+    height: 230px;
+    border-radius: 7px;
+    margin-right: 16%;
+}
+.sunriseSunset {
+    background-color: rgba(255, 255, 255);
+    width: 350px;
+    height: 200px;
     border-radius: 7px;
 }
 .static {
