@@ -75,7 +75,6 @@ export class LoginComponent implements OnInit {
     this.signUp.emit(true);
   }
 
-
   openDialog() {
     this.dialog.open(PopUpComponent);
   }
