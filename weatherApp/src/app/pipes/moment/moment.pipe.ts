@@ -9,5 +9,4 @@ export class MomentPipe implements PipeTransform {
   public transform(value: any, args?: any): any {
     return moment(value).format("DD/MM/YYYY");
   }
-
 }
