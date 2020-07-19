@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
+
   constructor() {  }
 
   ngOnInit() {
@@ -15,6 +16,10 @@ export class NavbarComponent implements OnInit {
   logOut() {
     localStorage.removeItem('username');
     window.location.reload();
+  }
+
+  convert() {
+    
   }
 
 }
