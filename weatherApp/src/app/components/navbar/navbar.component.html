@@ -6,6 +6,6 @@
     <mat-icon>search</mat-icon>
   </mat-form-field>
   <span class="spacer"></span>
-  <div class="temper">&nbsp; °C &nbsp;</div> | <div class="temper">&nbsp; °F &nbsp;</div>
+  &nbsp;<div class="temper" (click)="convert()"> °C </div>&nbsp; | &nbsp;<div class="temper" (click)="convert()">°F</div>&nbsp;
   <button class="logOut" mat-stroked-button href="/" (click)="logOut()">Log Out</button>
 </mat-toolbar>

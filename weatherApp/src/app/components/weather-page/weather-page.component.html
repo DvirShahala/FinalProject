@@ -10,9 +10,13 @@
                         <mat-card-subtitle>{{ forecast.weekday }}</mat-card-subtitle>
                         <img [src]="forecast.iconLink" />
                         <mat-card-content>
-                            <p>
+                            <p *ngIf = "celsius">
                                 {{ forecast.lowTemperature | number: '1.0-0' }}°C -
                                 {{ forecast.highTemperature | number: '1.0-0' }}°C
+                            </p>
+                            <p *ngIf = "!celsius">
+                                {{ changeCelsiusToFahrenheit(forecast.lowTemperature) | number: '1.0-0' }}°F -
+                                {{ changeCelsiusToFahrenheit(forecast.highTemperature) | number: '1.0-0' }}°F
                             </p>
                             <p>{{ forecast.utcTime | moment }}</p>
                         </mat-card-content>
@@ -46,11 +50,11 @@
         </mat-card>
 
 
-        <mat-card class="feel">
-            <mat-card-title>Some</mat-card-title>
-            <mat-card-content>
-                
-            </mat-card-content>
+        <mat-card *ngFor="let forecast of getCityName" class="feel">
+                    <mat-card-title>{{ forecast.city }}, {{ forecast.country }}</mat-card-title>
+                    <mat-card-content>
+
+                    </mat-card-content>
         </mat-card>
 
 

@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-// import { MomentPipe } from '../../pipes/moment/moment.pipe';
 import { Router } from '@angular/router';
 import * as moment from "moment";
 
@@ -16,14 +15,16 @@ export class WeatherPageComponent implements OnInit {
   private apiKey: string;
   public weatherSevenDays: any;
   public sunriseSunset: any;
+  public getCityName: any;
   public i: number = 0;
   public timeAMFM: string;
-  // public dateWeather: MomentPipe;
-  
+  celsius: boolean = true;  
 
   constructor(private http: HttpClient, private routes: Router) {
     this.apiKey = "b-Xq8MhhqNUWQT4016csTTQ2j--m8mksCwsnh8GfB-s";
     this.weatherSevenDays = [];
+    this.sunriseSunset = [];
+    this.getCityName = [];
   }
 
   ngOnInit(): void {
@@ -31,6 +32,7 @@ export class WeatherPageComponent implements OnInit {
       navigator.geolocation.getCurrentPosition(position => {
         this.getSevenDaysWeather(position.coords);
         this.getsunriseSunset(position.coords);
+        this.getNameOfCity(position.coords);
       });
     } else {
       console.error("The browser does not support geolocation...");
@@ -61,6 +63,16 @@ export class WeatherPageComponent implements OnInit {
       });
   }
 
+  public getNameOfCity(coordinates: any) {
+    this.http.jsonp("https://weather.ls.hereapi.com/weather/1.0/report.json?product=observation&oneobservation=true&latitude=" + coordinates.latitude + "&longitude=" + coordinates.longitude + "&apiKey=" + this.apiKey, "jsonpCallback")
+      .pipe(map(result => (<any>result).observations))
+      .subscribe(result => {
+        this.getCityName = result.location[0].observation;
+      }, error => {
+        console.error(error);
+      });
+  }
+
   public getWindSpeed() {
     return this.weatherSevenDays[0].windSpeed;
   }
@@ -81,5 +93,10 @@ export class WeatherPageComponent implements OnInit {
   public getSunsetTime() {
     this.timeAMFM = this.sunriseSunset[0].sunset;
     return moment(this.timeAMFM, ["h:mm A"]).format("HH:mm"); 
+  }
+
+  public changeCelsiusToFahrenheit(Celsius: number)
+  {
+    return (Celsius * 1.8) + 32;
   }
 }
