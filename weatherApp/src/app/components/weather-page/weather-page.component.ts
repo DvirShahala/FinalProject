@@ -18,7 +18,8 @@ export class WeatherPageComponent implements OnInit {
   public getCityName: any;
   public i: number = 0;
   public timeAMFM: string;
-  celsius: boolean = true;  
+  public if_celsius: boolean = true;
+  
 
   constructor(private http: HttpClient, private routes: Router) {
     this.apiKey = "b-Xq8MhhqNUWQT4016csTTQ2j--m8mksCwsnh8GfB-s";

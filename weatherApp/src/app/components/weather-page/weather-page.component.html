@@ -10,11 +10,11 @@
                         <mat-card-subtitle>{{ forecast.weekday }}</mat-card-subtitle>
                         <img [src]="forecast.iconLink" />
                         <mat-card-content>
-                            <p *ngIf = "celsius">
+                            <p *ngIf = "if_celsius">
                                 {{ forecast.lowTemperature | number: '1.0-0' }}°C -
                                 {{ forecast.highTemperature | number: '1.0-0' }}°C
                             </p>
-                            <p *ngIf = "!celsius">
+                            <p *ngIf = "!if_celsius">
                                 {{ changeCelsiusToFahrenheit(forecast.lowTemperature) | number: '1.0-0' }}°F -
                                 {{ changeCelsiusToFahrenheit(forecast.highTemperature) | number: '1.0-0' }}°F
                             </p>
