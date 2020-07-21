@@ -1,21 +1,24 @@
 .background-screen {
     background-image: -webkit-gradient(linear,left top,left bottom,color-stop(9%,#113076),to(#4da3d1));
-    /* background-image: -webkit-gradient(linear,left top,left bottom,color-stop(9%,#046f94),to(#65b7c6)); */
-    min-width: 100%;
     min-height: 100%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 .weekForecast {
     border-radius: 10px;
-    width: 1000px;
+    width: 73%;
     text-align: center;
-    margin: 2% auto;
+    margin-bottom: 1.38%;
+    margin-top: 1.38%;
 }
 /* .mat-grid-list {
     min-height: 100vh;
     min-width: 100%;
 } */
 .mat-card-title {
-    margin: 4%;
+    margin: 3%;
     font-weight: bold;
 }
 .mat-card-subtitle {
@@ -26,14 +29,12 @@
     font-size: 16px;
 }
 .wind, .feel {
-    width: 300px;
-    height: 230px;
+    width: 21.85%;
     border-radius: 10px;
-    margin-right: 1.35%;
+    margin-right: 1.38%;
 }
 .sunriseSunset {
-    width: 300px;
-    height: 230px;
+    width: 21.85%;
     border-radius: 10px;
 }
 .static {
