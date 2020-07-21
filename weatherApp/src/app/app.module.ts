@@ -14,6 +14,7 @@ import { MomentPipe } from './pipes/moment/moment.pipe';
 import { WeatherPageComponent } from './components/weather-page/weather-page.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NgMatSearchBarModule } from 'ng-mat-search-bar';
+// import { MbscModule } from '@mobiscroll/angular';
 
 
 
@@ -37,7 +38,8 @@ import { NgMatSearchBarModule } from 'ng-mat-search-bar';
     FlexLayoutModule,
     HttpClientModule,
     HttpClientJsonpModule,
-    NgMatSearchBarModule
+    NgMatSearchBarModule,
+    // MbscModule
   ],
   providers: [],
   bootstrap: [AppComponent]

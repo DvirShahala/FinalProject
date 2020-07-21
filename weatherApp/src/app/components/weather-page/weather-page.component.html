@@ -1,30 +1,32 @@
 <div class='background-screen'>
     <app-navbar></app-navbar>
 
-    <mat-grid-list cols="1" rowHeight="5:1">
-        <mat-grid-tile>
-            <mat-card class="weekForecast">
-                <mat-card-title>Weekly forecast</mat-card-title>
-                <div fxLayout="row" fxLayoutAlign="space-evenly center">
-                    <div *ngFor="let forecast of weatherSevenDays">
-                        <mat-card-subtitle>{{ forecast.weekday }}</mat-card-subtitle>
-                        <img [src]="forecast.iconLink" />
-                        <mat-card-content>
-                            <p *ngIf = "if_celsius">
-                                {{ forecast.lowTemperature | number: '1.0-0' }}°C -
-                                {{ forecast.highTemperature | number: '1.0-0' }}°C
-                            </p>
-                            <p *ngIf = "!if_celsius">
-                                {{ changeCelsiusToFahrenheit(forecast.lowTemperature) | number: '1.0-0' }}°F -
-                                {{ changeCelsiusToFahrenheit(forecast.highTemperature) | number: '1.0-0' }}°F
-                            </p>
-                            <p>{{ forecast.utcTime | moment }}</p>
-                        </mat-card-content>
-                    </div>
+    <div fxLayout="row" fxLayoutAlign="center">
+        <!-- <mat-grid-list cols="1" rowHeight="5:1">
+        <mat-grid-tile> -->
+        <mat-card class="weekForecast">
+            <mat-card-title>Weekly forecast</mat-card-title>
+            <div fxLayout="row" fxLayoutAlign="space-evenly center">
+                <div *ngFor="let forecast of weatherSevenDays">
+                    <mat-card-subtitle>{{ forecast.weekday }}</mat-card-subtitle>
+                    <img [src]="forecast.iconLink" />
+                    <mat-card-content>
+                        <p *ngIf="if_celsius">
+                            {{ forecast.lowTemperature | number: '1.0-0' }}°C -
+                            {{ forecast.highTemperature | number: '1.0-0' }}°C
+                        </p>
+                        <p *ngIf="!if_celsius">
+                            {{ changeCelsiusToFahrenheit(forecast.lowTemperature) | number: '1.0-0' }}°F -
+                            {{ changeCelsiusToFahrenheit(forecast.highTemperature) | number: '1.0-0' }}°F
+                        </p>
+                        <p>{{ forecast.utcTime | moment }}</p>
+                    </mat-card-content>
                 </div>
-            </mat-card>
-        </mat-grid-tile>
-    </mat-grid-list>
+            </div>
+        </mat-card>
+    </div>
+    <!-- </mat-grid-tile>
+    </mat-grid-list> -->
 
     <div fxLayout="row" fxLayoutAlign="center">
         <mat-card class="wind">
@@ -51,10 +53,10 @@
 
 
         <mat-card *ngFor="let forecast of getCityName" class="feel">
-                    <mat-card-title>{{ forecast.city }}, {{ forecast.country }}</mat-card-title>
-                    <mat-card-content>
+            <mat-card-title>{{ forecast.city }}, {{ forecast.country }}</mat-card-title>
+            <mat-card-content>
 
-                    </mat-card-content>
+            </mat-card-content>
         </mat-card>
 
 
