@@ -2,6 +2,7 @@ import { Component, OnInit, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { WeatherService } from "../../services/weather/weather.service"
 import * as moment from "moment";
 
 
@@ -15,29 +16,28 @@ export class WeatherPageComponent implements OnInit {
   private apiKey: string;
   public weatherSevenDays: any;
   public sunriseSunset: any;
-  public getCityName: any;
   public i: number = 0;
   public timeAMFM: string;
   public if_celsius: boolean = true;
-  
+  public loading: boolean = true;
 
-  constructor(private http: HttpClient, private routes: Router) {
+  constructor(private http: HttpClient, private routes: Router, private weatherSrv: WeatherService, private weather: WeatherService) {
     this.apiKey = "b-Xq8MhhqNUWQT4016csTTQ2j--m8mksCwsnh8GfB-s";
     this.weatherSevenDays = [];
     this.sunriseSunset = [];
-    this.getCityName = [];
   }
 
   ngOnInit(): void {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
+        //this.weatherSevenDays = this.weatherSrv.getSevenDaysWeather(position.coords);
         this.getSevenDaysWeather(position.coords);
         this.getsunriseSunset(position.coords);
-        this.getNameOfCity(position.coords);
       });
     } else {
       console.error("The browser does not support geolocation...");
     }
+
   }
 
   public getSevenDaysWeather(coordinates: any) {
@@ -48,7 +48,8 @@ export class WeatherPageComponent implements OnInit {
         for (const element of this.weatherSevenDays) {
           this.weatherSevenDays[this.i].iconLink = this.weatherSevenDays[this.i].iconLink + "?apiKey=" + this.apiKey;
           this.i++;
-        }
+        }      
+        this.loading = false;
       }, error => {
         console.error(error);
       });
@@ -59,16 +60,6 @@ export class WeatherPageComponent implements OnInit {
       .pipe(map(result => (<any>result).astronomy))
       .subscribe(result => {
         this.sunriseSunset = result.astronomy;
-      }, error => {
-        console.error(error);
-      });
-  }
-
-  public getNameOfCity(coordinates: any) {
-    this.http.jsonp("https://weather.ls.hereapi.com/weather/1.0/report.json?product=observation&oneobservation=true&latitude=" + coordinates.latitude + "&longitude=" + coordinates.longitude + "&apiKey=" + this.apiKey, "jsonpCallback")
-      .pipe(map(result => (<any>result).observations))
-      .subscribe(result => {
-        this.getCityName = result.location[0].observation;
       }, error => {
         console.error(error);
       });
@@ -94,6 +85,14 @@ export class WeatherPageComponent implements OnInit {
   public getSunsetTime() {
     this.timeAMFM = this.sunriseSunset[0].sunset;
     return moment(this.timeAMFM, ["h:mm A"]).format("HH:mm"); 
+  }
+
+  public getUvIndex() {
+    return this.weatherSevenDays[0].uvIndex;
+  }
+
+  public getUvDetail() {
+    return this.weatherSevenDays[0].uvDesc;
   }
 
   public changeCelsiusToFahrenheit(Celsius: number)
