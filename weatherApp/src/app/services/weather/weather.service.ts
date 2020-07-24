@@ -19,29 +19,28 @@ export class WeatherService {
     this.apiKey = "b-Xq8MhhqNUWQT4016csTTQ2j--m8mksCwsnh8GfB-s";
   }
 
-  // public getDailyWeather(coordinates: any) {
-  //   this.http.jsonp("https://weather.ls.hereapi.com/weather/1.0/report.json?product=forecast_7days_simple&latitude=" + coordinates.latitude + "&longitude=" + coordinates.longitude + "&apiKey=" + this.apiKey, "jsonpCallback")
-  //     .pipe(map(result => { return (<any>result).dailyForecasts } ));
-  // }
 
- public getStatus()
-{
-  return false;
-}
+  getAllData(coordinates: any) {
+    const httpOptions = {
+      headers: new HttpHeaders({
 
-  public getSevenDaysWeather(coordinates: any) {
-    this.http.jsonp("https://weather.ls.hereapi.com/weather/1.0/report.json?product=forecast_7days_simple&latitude=" + coordinates.latitude + "&longitude=" + coordinates.longitude + "&apiKey=" + this.apiKey, "jsonpCallback")
-      .pipe(map(result => (<any>result).dailyForecasts.forecastLocation))
-      .subscribe(result => {
-        this.weatherSevenDays = result.forecast;
-        for (const element of this.weatherSevenDays) {
-          this.weatherSevenDays[this.i].iconLink = this.weatherSevenDays[this.i].iconLink + "?apiKey=" + this.apiKey;
-          this.i++;
-        }
-        return  result.forecast;
-      }, error => {
-        console.error(error);
-      });
+      })
+    }
+    const paramsBody = "&latitude=" + coordinates.latitude + "&longitude=" + coordinates.longitude + "&apiKey=" + this.apiKey
+
+    this.http.get("https://weather.ls.hereapi.com/weather/1.0/report.json?product=forecast_7days_simple" + paramsBody, httpOptions).toPromise().catch(err => console.log(err)).then(results => {
+      this.weatherSevenDays = results["dailyForecasts"]["forecastLocation"]["forecast"];
+      for (const element of this.weatherSevenDays) {
+        this.weatherSevenDays[this.i].iconLink = this.weatherSevenDays[this.i].iconLink + "?apiKey=" + this.apiKey;
+        this.i++;
+      }
+    });
+
+    this.http.get("https://weather.ls.hereapi.com/weather/1.0/report.json?product=forecast_astronomy" + paramsBody, httpOptions).toPromise().catch(err => console.log(err)).then(results => {
+      this.sunriseSunset = results["astronomy"]["astronomy"];
+    });
+    
   }
+
 
 }
