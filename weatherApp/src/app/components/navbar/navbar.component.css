@@ -2,8 +2,9 @@
     color: white;
 }
 .mat-toolbar {
-    min-height: 100%;
-    min-width: 100%;
+    background-color: #113076;
+    min-height: 64px;
+    max-height: 64px;
 }
 .spacer {
     flex: 1 1 auto;
@@ -14,10 +15,6 @@
 }
 .temper {
     cursor: pointer;
-}
-.mat-toolbar {
-    /* height: 70px; */
-    background-color: #113076;
 }
 ::placeholder { 
     /* Chrome and firefox */
