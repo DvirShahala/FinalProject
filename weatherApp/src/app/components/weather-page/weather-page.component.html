@@ -2,7 +2,21 @@
     <app-navbar></app-navbar>
 
     <div class="loading" *ngIf="loading else loaded">
-        <mat-spinner style="margin:0 auto;"></mat-spinner>
+        <div class="container">
+            <div class="row">
+                <div id="loader">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="loading"></div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <ng-template #loaded>
@@ -56,14 +70,14 @@
             <mat-card class="feel">
                 <mat-card-title>Today UV Index</mat-card-title>
                 <div fxLayout="row" fxLayoutAlign="space-evenly center">
-                    <mat-card-content *ngIf="getUvIndex()>6" class="uvContentHigh">
-                        {{ getUvIndex() }}
-                        {{ getUvDetail() }}
+                    <mat-card-content *ngIf="uvIndex>6" class="uvContentHigh">
+                        {{ uvIndex }}
+                        {{ uvDetail }}
                     </mat-card-content>
 
-                    <mat-card-content *ngIf="getUvIndex()<=6" class="uvContentLow">
-                        {{ getUvIndex() }}
-                        {{ getUvDetail() }}
+                    <mat-card-content *ngIf="uvIndex<=6" class="uvContentLow">
+                        {{ uvIndex }}
+                        {{ uvDetail }}
                     </mat-card-content>
 
                 </div>

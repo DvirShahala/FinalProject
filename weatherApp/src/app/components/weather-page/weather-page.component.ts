@@ -23,9 +23,10 @@ export class WeatherPageComponent implements OnInit {
   public windSpeed: string;
   public WindDirection: string;
   public feelsLike: string;
+  public uvIndex: string;
+  public uvDetail: string;
 
-
-  constructor(private http: HttpClient, private routes: Router, private weatherSrv: WeatherService, private weather: WeatherService) {
+  constructor(private http: HttpClient, private routes: Router) {
     this.apiKey = "b-Xq8MhhqNUWQT4016csTTQ2j--m8mksCwsnh8GfB-s";
   }
 
@@ -37,26 +38,25 @@ export class WeatherPageComponent implements OnInit {
     } else {
       console.error("The browser does not support geolocation...");
     }
-
   }
-
 
   async getAllData(coordinates: any) {
     const wait = (ms) => new Promise(res => setTimeout(res, ms));
     //await wait(1000);
     this.getSevenDays(coordinates);
     this.getSunrise(coordinates);
-    await wait(1000);
+    await wait(1500);
     this.windSpeed = this.weatherSevenDays[0].windSpeed;
     this.WindDirection = this.weatherSevenDays[0].windDesc;
     this.feelsLike = this.weatherSevenDays[0].beaufortDescription;
+    this.uvIndex = this.weatherSevenDays[0].uvIndex;
+    this.uvDetail = this.weatherSevenDays[0].uvDesc;
     this.loading = false;
   }
 
   public getSevenDays(coordinates: any) {
     const httpOptions = {
       headers: new HttpHeaders({
-
       })
     }
     const paramsBody = "&latitude=" + coordinates.latitude + "&longitude=" + coordinates.longitude + "&apiKey=" + this.apiKey
@@ -73,7 +73,6 @@ export class WeatherPageComponent implements OnInit {
   public getSunrise(coordinates: any) {
     const httpOptions = {
       headers: new HttpHeaders({
-
       })
     }
     const paramsBody = "&latitude=" + coordinates.latitude + "&longitude=" + coordinates.longitude + "&apiKey=" + this.apiKey
@@ -91,14 +90,6 @@ export class WeatherPageComponent implements OnInit {
   public getSunsetTime() {
     this.timeAMFM = this.sunriseSunset[0].sunset;
     return moment(this.timeAMFM, ["h:mm A"]).format("HH:mm");
-  }
-
-  public getUvIndex() {
-    return this.weatherSevenDays[0].uvIndex;
-  }
-
-  public getUvDetail() {
-    return this.weatherSevenDays[0].uvDesc;
   }
 
   public changeCelsiusToFahrenheit(Celsius: number) {
