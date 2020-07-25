@@ -70,12 +70,12 @@
             <mat-card class="feel">
                 <mat-card-title>Today UV Index</mat-card-title>
                 <div fxLayout="row" fxLayoutAlign="space-evenly center">
-                    <mat-card-content *ngIf="uvIndex>6" class="uvContentHigh">
+                    <mat-card-content *ngIf="uvIndex> '6' " class="uvContentHigh">
                         {{ uvIndex }}
                         {{ uvDetail }}
                     </mat-card-content>
 
-                    <mat-card-content *ngIf="uvIndex<=6" class="uvContentLow">
+                    <mat-card-content *ngIf="uvIndex<= '6' " class="uvContentLow">
                         {{ uvIndex }}
                         {{ uvDetail }}
                     </mat-card-content>
