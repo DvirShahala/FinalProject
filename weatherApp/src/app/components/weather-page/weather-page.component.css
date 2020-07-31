@@ -55,6 +55,11 @@
   font-size: 44px;
   color: rgb(1, 160, 62);
 }
+h1 {
+  color: white;
+  font-size: 26px;
+  font-weight: lighter;
+}
 /* Spinner */
 #loader {
   bottom: 0;

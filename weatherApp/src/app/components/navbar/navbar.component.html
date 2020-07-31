@@ -1,11 +1,26 @@
 <mat-toolbar>
-  <img class="icon" src='../../../assets/weathAirWhiteOLD.png'>
+  <img class="icon" (click)="refresh()" src='../../../assets/weathAirWhiteOLD.png'>
   <span class="spacer"></span>
-  <mat-form-field floatLabel="never">
-    <input matInput placeholder="Search City">
-    <mat-icon>search</mat-icon>
-  </mat-form-field>
+
+  <form class="searchForm">
+    <mat-form-field class="full-width" floatLabel="never">
+      <input type="text"
+             placeholder="Search City"
+             aria-label="Number"
+             matInput
+             [formControl]="myControl"
+             [matAutocomplete]="auto">
+             <a (click)="addSelectedCity()"><mat-icon>search</mat-icon></a>
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option class="options" *ngFor="let option of filteredOptions | async" [value]="option">
+          {{ option }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+
   <span class="spacer"></span>
-  &nbsp;<div class="temper" (click)="convert()"> °C </div>&nbsp; | &nbsp;<div class="temper" (click)="convert()">°F</div>&nbsp;&nbsp;
+  &nbsp;<div class="temper" (click)="convert()"> °C </div>&nbsp; | &nbsp;<div class="temper" (click)="convert()">°F
+  </div>&nbsp;&nbsp;
   <button class="logOut" mat-stroked-button href="/" (click)="logOut()">Log Out</button>
 </mat-toolbar>
