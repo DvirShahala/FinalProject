@@ -10,9 +10,9 @@
              matInput
              [formControl]="myControl"
              [matAutocomplete]="auto">
-             <a (click)="addSelectedCity()"><mat-icon>search</mat-icon></a>
+             <mat-icon>search</mat-icon>
       <mat-autocomplete #auto="matAutocomplete">
-        <mat-option class="options" *ngFor="let option of filteredOptions | async" [value]="option">
+        <mat-option (click)="addSelectedCity()" class="options" *ngFor="let option of filteredOptions | async" [value]="option">
           {{ option }}
         </mat-option>
       </mat-autocomplete>
@@ -20,7 +20,7 @@
   </form>
 
   <span class="spacer"></span>
-  &nbsp;<div class="temper" (click)="convert()"> °C </div>&nbsp; | &nbsp;<div class="temper" (click)="convert()">°F
+  &nbsp;<div class="temper" (click)="convert('c')"> °C </div>&nbsp; | &nbsp;<div class="temper" (click)="convert('f')">°F
   </div>&nbsp;&nbsp;
   <button class="logOut" mat-stroked-button href="/" (click)="logOut()">Log Out</button>
 </mat-toolbar>

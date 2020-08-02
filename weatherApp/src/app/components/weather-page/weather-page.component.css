@@ -12,7 +12,7 @@
   width: 73%;
   text-align: center;
   margin-bottom: 1.38%;
-  margin-top: 1.38%;
+  /*margin-top: 1.38%;*/
   min-height: 200px;
 }
 .mat-card-title {
@@ -57,8 +57,10 @@
 }
 h1 {
   color: white;
-  font-size: 26px;
-  font-weight: lighter;
+  font-size: 20px;
+  margin-left: 12.5%;
+  margin-bottom: 0%;
+  padding-top: 1%;
 }
 /* Spinner */
 #loader {

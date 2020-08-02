@@ -30,7 +30,7 @@ export class NavbarComponent implements OnInit {
   async allData() {
     const wait = (ms) => new Promise(res => setTimeout(res, ms));
     this.getCities();
-    await wait(1000);
+    await wait(2000);
 
     this.filteredOptions = this.myControl.valueChanges
       .pipe(
@@ -50,7 +50,7 @@ export class NavbarComponent implements OnInit {
     const paramsBody = "&x-rapidapi-key=" + this.cityApiKey + "&limit=" + 10 + "&minPopulation=" + 1000000
 
     this.http.get("https://wft-geo-db.p.rapidapi.com/v1/geo/cities?" + paramsBody, httpOptions).toPromise().catch(err => console.log(err)).then(results => {
-      this.options = results["data"].map(x => x.country + ", " + x.name);
+      this.options = results["data"].map(x => x.name + ", " + x.country);
 
       // while (results["links"][1].rel == "next") {
       //   let hrefBody = results["links"][1].href;
@@ -68,12 +68,17 @@ export class NavbarComponent implements OnInit {
   }
 
   addSelectedCity() {
-    let cityName: string = this.myControl.value.slice(this.myControl.value.indexOf(',') + 2, this.myControl.value.length);
+    let cityName: string = this.myControl.value.slice( 0, this.myControl.value.indexOf(','));
     this.city.emit(cityName);
   }
 
-  convert() {
-    this.celsius = !this.celsius;
+  convert(celOrFah: string) {
+    if(celOrFah == 'c') {
+      this.celsius = true;
+    } else {
+      this.celsius = false;
+    }
+    //this.celsius = !this.celsius;
     this.celsiusOrFahrenheit.emit(this.celsius);
   }
 

@@ -72,7 +72,7 @@ export class WeatherPageComponent implements OnInit {
     const wait = (ms) => new Promise(res => setTimeout(res, ms));
 
     this.getSpecificSunrise(name);
-    await wait(100);
+    await wait(200);
 
     const httpOptions = {
       headers: new HttpHeaders({
@@ -138,7 +138,7 @@ export class WeatherPageComponent implements OnInit {
     this.uvDetail = weatherArr[0].uvDesc;
   }
 
-  convert() {
-    this.if_celsius = !this.if_celsius;
+  convert(celsius: boolean) {
+    this.if_celsius = celsius;
   }
 }

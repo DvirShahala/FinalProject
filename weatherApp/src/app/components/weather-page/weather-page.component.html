@@ -20,7 +20,7 @@
     </div>
 
     <ng-template #loaded>
-            <div fxLayout="row" fxLayoutAlign="center">
+            <div fxLayout="row" fxLayoutAlign="space-between none">
                 <h1>{{ currentCity }}</h1>
             </div>
         <div fxLayout="row" fxLayoutAlign="center">
@@ -73,12 +73,12 @@
             <mat-card class="feel">
                 <mat-card-title>Today UV Index</mat-card-title>
                 <div fxLayout="row" fxLayoutAlign="space-evenly center">
-                    <mat-card-content *ngIf="uvDetail!='Low'" class="uvContentHigh">
+                    <mat-card-content *ngIf="uvDetail!='Low' && uvDetail!='Minimal'" class="uvContentHigh">
                         {{ uvIndex }}
                         {{ uvDetail }}
                     </mat-card-content>
 
-                    <mat-card-content *ngIf="uvDetail=='Low'" class="uvContentLow">
+                    <mat-card-content *ngIf="uvDetail=='Low' || uvDetail=='Minimal'" class="uvContentLow">
                         {{ uvIndex }}
                         {{ uvDetail }}
                     </mat-card-content>
