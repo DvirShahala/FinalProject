@@ -24,22 +24,15 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.allData();
   }
 
-  async allData() {
-    const wait = (ms) => new Promise(res => setTimeout(res, ms));
-    this.getCities();
-    await wait(2000);
-
-    this.filteredOptions = this.myControl.valueChanges
-      .pipe(
-        startWith(''),
-        map(value => this._filter(value))
-      );
+  async onKeyup(event) {
+    if (event.length >= 3) {
+      this.getCities(event);
+    }
   }
 
-  public getCities() {
+  public getCities(namePrefix: any) {
     const httpOptions = {
       headers: new HttpHeaders({
         "x-rapidapi-host": "wft-geo-db.p.rapidapi.com",
@@ -47,19 +40,18 @@ export class NavbarComponent implements OnInit {
         //"useQueryString": true
       })
     }
-    const paramsBody = "&x-rapidapi-key=" + this.cityApiKey + "&limit=" + 10 + "&minPopulation=" + 1000000
+    const paramsBody = "&x-rapidapi-key=" + this.cityApiKey + "&limit=" + 10 + "&sort=" + "name" + "&namePrefix=" + namePrefix;
 
     this.http.get("https://wft-geo-db.p.rapidapi.com/v1/geo/cities?" + paramsBody, httpOptions).toPromise().catch(err => console.log(err)).then(results => {
       this.options = results["data"].map(x => x.name + ", " + x.country);
-
-      // while (results["links"][1].rel == "next") {
-      //   let hrefBody = results["links"][1].href;
-      //   this.http.get("https://wft-geo-db.p.rapidapi.com" + hrefBody , httpOptions).toPromise().catch(err => console.log(err)).then(results => {
-      //     this.options += results["data"].map(x => x.country + ", " + x.name);
-      //   });
-      // }
     }
-    )
+    ).then(test => {
+      this.filteredOptions = this.myControl.valueChanges
+        .pipe(
+          startWith(''),
+          map(value => this._filter(value))
+        );
+    })
   }
 
   private _filter(value: string): string[] {
@@ -68,12 +60,12 @@ export class NavbarComponent implements OnInit {
   }
 
   addSelectedCity() {
-    let cityName: string = this.myControl.value.slice( 0, this.myControl.value.indexOf(','));
+    let cityName: string = this.myControl.value.slice(0, this.myControl.value.indexOf(','));
     this.city.emit(cityName);
   }
 
   convert(celOrFah: string) {
-    if(celOrFah == 'c') {
+    if (celOrFah == 'c') {
       this.celsius = true;
     } else {
       this.celsius = false;

@@ -25,7 +25,6 @@ export class WeatherPageComponent implements OnInit {
   public uvIndex: string;
   public uvDetail: string;
   public currentCity: string;
-  @Input() cityFromNavbar: string;
 
   constructor(private http: HttpClient, private routes: Router) {
     this.apiKey = "b-Xq8MhhqNUWQT4016csTTQ2j--m8mksCwsnh8GfB-s";
