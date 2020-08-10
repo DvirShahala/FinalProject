@@ -9,7 +9,8 @@
              aria-label="Number"
              matInput
              [formControl]="myControl"
-             [matAutocomplete]="auto">
+             [matAutocomplete]="auto"
+             (keyup)="onKeyup($event.target.value)">
              <mat-icon>search</mat-icon>
       <mat-autocomplete #auto="matAutocomplete">
         <mat-option (click)="addSelectedCity()" class="options" *ngFor="let option of filteredOptions | async" [value]="option">
