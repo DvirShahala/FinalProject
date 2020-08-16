@@ -1,62 +1,74 @@
 <div fxLayout="column" fxLayoutAlign="center center" class='background-screen'>
   <img class="logo" src="../../../assets/weathAirOLD.png">
-    <mat-card class="mainCard">
-      <div fxLayout="column" fxLayoutAlign="center stretch" class='login-card'>
-        <ng-container>
-          <div fxLayout="column" fxLayoutAlign="space-around center" class='title'>
-            <!--<img class="signInIcon" src="../../../assets/download.jpg">-->
-            <mat-card-header>
-              <mat-card-title>Sign In</mat-card-title>
-            </mat-card-header>
+  <mat-card class="mainCard">
+    <div fxLayout="column" fxLayoutAlign="center stretch" class='login-card'>
+      <ng-container>
+        <div fxLayout="column" fxLayoutAlign="space-around center" class='title'>
+          <!--<img class="signInIcon" src="../../../assets/download.jpg">-->
+          <mat-card-header>
+            <mat-card-title>Sign In</mat-card-title>
+          </mat-card-header>
+        </div>
+      </ng-container>
+
+      <mat-card-content>
+        <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
+          <div fxLayout="column" fxLayoutAlign="space-around stretch">
+
+            <mat-form-field class="form-element">
+              <input matInput formControlName="email">
+              <mat-placeholder>
+                <mat-icon>email</mat-icon>&nbsp;Email
+              </mat-placeholder>
+              <mat-error *ngIf="!formGroup.controls['email'].valid">
+                {{ getErrorEmail() }}
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="form-element">
+              <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+              <mat-placeholder>
+                <mat-icon>vpn_key</mat-icon>&nbsp; Password
+              </mat-placeholder>
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error *ngIf="!formGroup.controls['password'].valid">
+                {{ getErrorPassword() }}
+              </mat-error>
+            </mat-form-field>
           </div>
-        </ng-container>
 
-        <mat-card-content>
-          <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
-            <div fxLayout="column" fxLayoutAlign="space-around stretch">
-
-              <mat-form-field class="form-element">
-                <input matInput formControlName="email">
-                <mat-placeholder>
-                  <mat-icon>email</mat-icon>&nbsp;Email
-                </mat-placeholder>
-                <mat-error *ngIf="!formGroup.controls['email'].valid">
-                  {{ getErrorEmail() }}
-                </mat-error>
-              </mat-form-field>
-
-              <mat-form-field class="form-element">
-                <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
-                <mat-placeholder>
-                  <mat-icon>vpn_key</mat-icon>&nbsp; Password
-                </mat-placeholder>
-                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                  [attr.aria-pressed]="hide">
-                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </button>
-                <mat-error *ngIf="!formGroup.controls['password'].valid">
-                  {{ getErrorPassword() }}
-                </mat-error>
-              </mat-form-field>
+          <div fxLayout="column" fxLayoutAlign="center center">
+            <div class="form-element">
+              <button mat-raised-button color="primary" type="submit" class="button">Log in</button>
+              <div> {{ invalidErrorMsg }} </div>
             </div>
+            or
+          </div>
 
-            <div fxLayout="column" fxLayoutAlign="center center">
-              <div class="form-element">
-                <button mat-raised-button color="primary" type="submit" class="button">Login</button>
-                <div> {{ invalidErrorMsg }} </div>
-              </div>
+          <div>
+            <div (click)="signInWithGoogle()" class="google btn">
+              <img class="googleIcon" src=".././../../assets/icons8-google-48.png">Log in with Google
             </div>
-          </form>
-        </mat-card-content>
-      </div>
-      <div fxLayout="row" fxLayoutAlign="center center" class="signUp">
-        <label><a (click)="openDialog()">Forgot Password?</a></label>
-      </div>
-      <div fxLayout="row" fxLayoutAlign="center center" class="signUp">
-        <label>Don't have an account?</label>&nbsp;<a (click)='signUpRequest()'>Sign Up</a>
-      </div>
-    </mat-card>
-    <div fxLayout="row" fxLayoutAlign="center center">
-      <label>Copyright &copy; by Dvir Shahala. All rights reserved</label>
+            <div (click)="signInWithFB()" class="fb btn">
+              <i class="fa fa-facebook fa-fw"></i> Log in with Facebook
+            </div>
+          </div>
+
+        </form>
+      </mat-card-content>
     </div>
+
+    <div fxLayout="row" fxLayoutAlign="center center" class="signUp">
+      <label><a (click)="openDialog()">Forgot Password?</a></label>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="center center" class="signUp">
+      <label>Don't have an account?</label>&nbsp;<a (click)='signUpRequest()'>Sign Up</a>
+    </div>
+  </mat-card>
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <label>Copyright &copy; by Dvir Shahala. All rights reserved</label>
+  </div>
 </div>
