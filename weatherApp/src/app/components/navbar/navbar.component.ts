@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { SocialAuthService } from "angularx-social-login";
 
 @Component({
   selector: 'app-navbar',
@@ -19,7 +20,7 @@ export class NavbarComponent implements OnInit {
   @Output() city = new EventEmitter<string>();
   @Output() celsiusOrFahrenheit = new EventEmitter<boolean>();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private authServiceSocial: SocialAuthService) {
     this.cityApiKey = "de1669beb6msh6a848aba1581ae0p12ee1bjsna7c1f0599054";
   }
 
@@ -80,6 +81,7 @@ export class NavbarComponent implements OnInit {
 
   logOut() {
     localStorage.removeItem('username');
+    this.authServiceSocial.signOut();
     window.location.reload();
   }
 }

@@ -4,7 +4,9 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PopUpComponent } from 'src/app/components/pop-up/pop-up.component';
-
+import { SocialAuthService } from "angularx-social-login";
+import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
+import { SocialUser } from "angularx-social-login";
 
 export interface userLogin {
   email: string;
@@ -22,18 +24,30 @@ export class LoginComponent implements OnInit {
   post: userLogin;
   hide: boolean = true;
   invalidErrorMsg = '';
+  socialUser: SocialUser;
   @Output() isLogin = new EventEmitter();
   @Output() signUp = new EventEmitter();
+  //@Output() socialName = new EventEmitter<string>();
 
 
   constructor(private formBuilder: FormBuilder,
     private loginService: AuthService,
     private routes: Router,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    private authServiceSocial: SocialAuthService) { }
 
   ngOnInit() {
     localStorage.removeItem('username');
     this.createForm();
+    this.authServiceSocial.authState.subscribe((user) => {
+      this.socialUser = user;
+      if(user!=null) {
+        localStorage.setItem('username', this.socialUser.name);
+        this.routes.navigate(['/weatherPage']);
+        this.isLogin.emit(true);
+        //this.socialName.emit(user.name);
+      }
+    });
   }
 
   createForm() {
@@ -78,4 +92,18 @@ export class LoginComponent implements OnInit {
   openDialog() {
     this.dialog.open(PopUpComponent);
   }
+
+
+  signInWithGoogle(): void {
+    this.authServiceSocial.signIn(GoogleLoginProvider.PROVIDER_ID);
+  }
+
+  signInWithFB(): void {
+    this.authServiceSocial.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }
+
+  // signOut(): void {
+  //   this.authServiceSocial.signOut();
+  // }
+
 }
