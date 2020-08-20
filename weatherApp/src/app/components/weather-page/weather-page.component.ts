@@ -44,7 +44,7 @@ export class WeatherPageComponent implements OnInit {
     const wait = (ms) => new Promise(res => setTimeout(res, ms));
     this.getSevenDays(coordinates);
     this.getSunrise(coordinates);
-    await wait(1500);
+    await wait(2000);
     this.setCardsDetails(this.weatherSevenDays);
     this.loading = false;
   }

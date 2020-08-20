@@ -42,7 +42,8 @@
 
           <div fxLayout="column" fxLayoutAlign="center center">
             <div class="form-element">
-              <button mat-raised-button color="primary" type="submit" class="button">Log in</button>
+              <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid">Log
+                in</button>
               <div> {{ invalidErrorMsg }} </div>
             </div>
             or

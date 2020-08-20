@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -11,9 +12,10 @@ export class SignUpComponent implements OnInit {
   formGroup: FormGroup;
   hide: boolean = true;
   invalidErrorMsg = '';
+  post: any;
+  if_used: any;
 
-  constructor(private formBuilder: FormBuilder,
-              private routes: Router) { }
+  constructor(private formBuilder: FormBuilder, private routes: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
     localStorage.removeItem('username');
@@ -29,6 +31,17 @@ export class SignUpComponent implements OnInit {
     });
   }
 
+  checkUseEmail(control) {
+    // this.if_used = (this.authService.checkInUseEmail("dvir@gmail.com")) ? { 'alreadyInUse': true } : null;
+    // console.log(this.if_used);
+    // return this.if_used;
+  }
+
+  async onSubmit(post) {
+    await this.authService.createAccount(post);
+    window.location.reload();
+  }
+
   checkLengthPassword(control) {
     let enteredPassword = control.value
     let passwordCheck = /^(?=.{6,})/;
@@ -37,7 +50,8 @@ export class SignUpComponent implements OnInit {
 
   getErrorEmail() {
     return this.formGroup.get('email').hasError('required') ? 'Field is required' :
-      this.formGroup.get('email').hasError('pattern') ? 'Not a valid email address' : '';
+      this.formGroup.get('email').hasError('pattern') ? 'Not a valid email address' :
+        this.formGroup.get('email').hasError('alreadyInUse') ? 'This email address is already in use' : '';
   }
 
   getErrorPassword() {
