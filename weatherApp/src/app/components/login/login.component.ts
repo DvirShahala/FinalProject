@@ -74,10 +74,10 @@ export class LoginComponent implements OnInit {
       this.formGroup.get('password').hasError('requirements') ? 'The field must contain at least 6 characters' : '';
   }
 
-  onSubmit(formValues) {
+  async onSubmit(formValues) {
     this.post = formValues;
-    var output = this.loginService.checkAuthenticated(this.post);
-    if (output == true) {
+    const output = await this.loginService.checkAuthenticated(this.post);
+    if (output) {
       this.routes.navigate(['/weatherPage']);
       this.isLogin.emit(true);
     } else {
