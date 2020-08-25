@@ -1,0 +1,33 @@
+.mainCard {
+  background-color: rgba(255, 255, 255, 0.8);
+  max-width: 25.6%;
+  width: 30%;
+  margin: 2% auto;
+  text-align: center;
+  border-radius: 10px;
+  padding: 35px 55px 25px 55px;
+}
+.background-screen {
+  background-image: url("../../../assets/loginBackground.jpg");
+  min-height: 100%;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+a {
+  text-decoration: none;
+  cursor: pointer;
+  color: #253CFF;
+}
+a:hover {
+  text-decoration: underline;
+}
+.logo {
+  width: 8.5%;
+}
+/*.signUpIcon {
+  height: 25px;
+  width: 25px;
+  padding-bottom: 3px;
+}*/

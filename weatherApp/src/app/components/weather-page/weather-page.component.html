@@ -1,0 +1,106 @@
+<div class='background-screen'>
+    <app-navbar (city)="getSpecificWeather($event)" (celsiusOrFahrenheit)="convert($event)"></app-navbar>
+
+    <div class="loading" *ngIf="loading else loaded">
+        <div class="container">
+            <div class="row">
+                <div id="loader">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="loading"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #loaded>
+            <div fxLayout="row" fxLayoutAlign="space-between none">
+                <h1>{{ currentCity }}</h1>
+            </div>
+        <div fxLayout="row" fxLayoutAlign="center">
+            <mat-card class="weekForecast">
+                <mat-card-title>Weekly forecast</mat-card-title>
+                <div fxLayout="row" fxLayoutAlign="space-evenly center">
+                    <div *ngFor="let forecast of weatherSevenDays">
+                        <mat-card-subtitle>{{ forecast.weekday }}</mat-card-subtitle>
+                        <img [src]="forecast.iconLink" />
+                        <mat-card-content>
+                            <p *ngIf="if_celsius">
+                                {{ forecast.lowTemperature | number: '1.0-0' }}°C -
+                                {{ forecast.highTemperature | number: '1.0-0' }}°C
+                            </p>
+                            <p *ngIf="!if_celsius">
+                                {{ changeCelsiusToFahrenheit(forecast.lowTemperature) | number: '1.0-0' }}°F -
+                                {{ changeCelsiusToFahrenheit(forecast.highTemperature) | number: '1.0-0' }}°F
+                            </p>
+                            <p>{{ forecast.utcTime | moment }}</p>
+                        </mat-card-content>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+
+
+        <div fxLayout="row" fxLayoutAlign="center">
+            <mat-card class="wind">
+                <mat-card-title>Today Wind Indices</mat-card-title>
+                <mat-card-content>
+                    <img class="static" src="../../../assets/windNoGIF.png">
+                    <img class="active" src="../../../assets/windy.gif">
+                    Wind Speed -
+                    {{ windSpeed }} km/h
+                </mat-card-content>
+                <mat-card-content>
+                    <img class="static" src="../../../assets/directionNoGIF.png">
+                    <img class="active" src="../../../assets/direction.gif">
+                    Wind Direction -
+                    {{ WindDirection }}
+                </mat-card-content>
+                <mat-card-content>
+                    <img class="static" src="../../../assets/blushingNoGIF.png">
+                    <img class="active" src="../../../assets/blushing.gif">
+                    Feels Like -
+                    {{ feelsLike }}
+                </mat-card-content>
+            </mat-card>
+
+            <mat-card class="feel">
+                <mat-card-title>Today UV Index</mat-card-title>
+                <div fxLayout="row" fxLayoutAlign="space-evenly center">
+                    <mat-card-content *ngIf="uvDetail!='Low' && uvDetail!='Minimal'" class="uvContentHigh">
+                        {{ uvIndex }}
+                        {{ uvDetail }}
+                    </mat-card-content>
+
+                    <mat-card-content *ngIf="uvDetail=='Low' || uvDetail=='Minimal'" class="uvContentLow">
+                        {{ uvIndex }}
+                        {{ uvDetail }}
+                    </mat-card-content>
+
+                </div>
+            </mat-card>
+
+            <mat-card class="sunriseSunset">
+                <mat-card-title>Sunrise and Sunset</mat-card-title>
+                <mat-card-content>
+                    <img class="static" src="../../../assets/sunriseNoGIF.png">
+                    <img class="active" src="../../../assets/sunrise.gif">
+                    Sunrise Time -
+                    {{ getSunriseTime() }}
+                </mat-card-content>
+                <mat-card-content>
+                    <img class="static" src="../../../assets/sunsetNoGIF.png">
+                    <img class="active" src="../../../assets/sunset.gif">
+                    Sunset Time -
+                    {{ getSunsetTime() }}
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </ng-template>
+</div>
