@@ -3555,6 +3555,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
     /*! @angular/common/http */
     "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+    /* harmony import */
+
+
+    var src_environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! src/environments/environment */
+    "./src/environments/environment.ts");
 
     var AuthService = /*#__PURE__*/function () {
       function AuthService(http) {
@@ -3574,7 +3580,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   case 0:
                     parameters = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('email', userDetails.email);
                     _context6.next = 3;
-                    return this.http.get("http://localhost:3000/api/users/specific", {
+                    return this.http.get("".concat(src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].BE_ENDPOINT, "/users/specific"), {
                       params: parameters
                     }).toPromise()["catch"](function (err) {
                       return console.log(err);
@@ -3611,7 +3617,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   case 0:
                     parameters = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('email', email);
                     _context7.next = 3;
-                    return this.http.get("http://localhost:3000/api/users/specific", {
+                    return this.http.get("".concat(src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].BE_ENDPOINT, "/users/specific"), {
                       params: parameters
                     }).toPromise()["catch"](function (err) {
                       return console.log(err);
@@ -3643,7 +3649,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 switch (_context8.prev = _context8.next) {
                   case 0:
                     _context8.next = 2;
-                    return this.http.post("http://localhost:3000/api/users/", {
+                    return this.http.post("".concat(src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].BE_ENDPOINT, "/users/"), {
                       fullName: user.fullName,
                       email: user.email,
                       password: user.password
@@ -3713,7 +3719,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
     var environment = {
-      production: false
+      production: false,
+      //BE_ENDPOINT: "http://localhost:3000/api"
+      BE_ENDPOINT: "https://weathairapp-be.herokuapp.com/api"
     };
     /*
      * For easier debugging in development mode, you can import the following file

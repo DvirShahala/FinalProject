@@ -1971,6 +1971,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
+
 
 
 
@@ -1983,7 +1985,7 @@ class AuthService {
     checkAuthenticated(userDetails) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             let parameters = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('email', userDetails.email);
-            return yield this.http.get("http://localhost:3000/api/users/specific", { params: parameters }).toPromise().catch(err => console.log(err)).then((user) => {
+            return yield this.http.get(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].BE_ENDPOINT}/users/specific`, { params: parameters }).toPromise().catch(err => console.log(err)).then((user) => {
                 if (user[0] != undefined) {
                     if (userDetails.password == user[0].password) {
                         localStorage.setItem('username', user[0].fullName);
@@ -1997,7 +1999,7 @@ class AuthService {
     checkInUseEmail(email) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             let parameters = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('email', email);
-            return yield this.http.get("http://localhost:3000/api/users/specific", { params: parameters }).toPromise().catch(err => console.log(err)).then((user) => {
+            return yield this.http.get(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].BE_ENDPOINT}/users/specific`, { params: parameters }).toPromise().catch(err => console.log(err)).then((user) => {
                 if (user[0] != undefined) {
                     return true;
                 }
@@ -2009,7 +2011,7 @@ class AuthService {
     }
     createAccount(user) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            yield this.http.post("http://localhost:3000/api/users/", {
+            yield this.http.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].BE_ENDPOINT}/users/`, {
                 fullName: user.fullName,
                 email: user.email,
                 password: user.password
@@ -2043,7 +2045,9 @@ __webpack_require__.r(__webpack_exports__);
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 const environment = {
-    production: false
+    production: false,
+    //BE_ENDPOINT: "http://localhost:3000/api"
+    BE_ENDPOINT: "https://weathairapp-be.herokuapp.com/api"
 };
 /*
  * For easier debugging in development mode, you can import the following file
