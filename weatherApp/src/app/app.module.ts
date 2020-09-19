@@ -48,7 +48,7 @@ import { GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-logi
         providers: [
           {
             id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider('502863079968-9s8k951bidcg6bo9bsu58mh5cqrm4h4p.apps.googleusercontent.com')
+            provider: new GoogleLoginProvider('502863079968-b892ej3idhfpfro6jfggvfuvdlmp0nup.apps.googleusercontent.com')
           },
           {
             id: FacebookLoginProvider.PROVIDER_ID,

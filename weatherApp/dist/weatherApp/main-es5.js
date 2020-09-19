@@ -732,7 +732,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           autoLogin: false,
           providers: [{
             id: angularx_social_login__WEBPACK_IMPORTED_MODULE_16__["GoogleLoginProvider"].PROVIDER_ID,
-            provider: new angularx_social_login__WEBPACK_IMPORTED_MODULE_16__["GoogleLoginProvider"]('502863079968-9s8k951bidcg6bo9bsu58mh5cqrm4h4p.apps.googleusercontent.com')
+            provider: new angularx_social_login__WEBPACK_IMPORTED_MODULE_16__["GoogleLoginProvider"]('502863079968-b892ej3idhfpfro6jfggvfuvdlmp0nup.apps.googleusercontent.com')
           }, {
             id: angularx_social_login__WEBPACK_IMPORTED_MODULE_16__["FacebookLoginProvider"].PROVIDER_ID,
             provider: new angularx_social_login__WEBPACK_IMPORTED_MODULE_16__["FacebookLoginProvider"]('646908969284899')
@@ -763,7 +763,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               autoLogin: false,
               providers: [{
                 id: angularx_social_login__WEBPACK_IMPORTED_MODULE_16__["GoogleLoginProvider"].PROVIDER_ID,
-                provider: new angularx_social_login__WEBPACK_IMPORTED_MODULE_16__["GoogleLoginProvider"]('502863079968-9s8k951bidcg6bo9bsu58mh5cqrm4h4p.apps.googleusercontent.com')
+                provider: new angularx_social_login__WEBPACK_IMPORTED_MODULE_16__["GoogleLoginProvider"]('502863079968-b892ej3idhfpfro6jfggvfuvdlmp0nup.apps.googleusercontent.com')
               }, {
                 id: angularx_social_login__WEBPACK_IMPORTED_MODULE_16__["FacebookLoginProvider"].PROVIDER_ID,
                 provider: new angularx_social_login__WEBPACK_IMPORTED_MODULE_16__["FacebookLoginProvider"]('646908969284899')
