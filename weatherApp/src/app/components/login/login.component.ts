@@ -27,8 +27,6 @@ export class LoginComponent implements OnInit {
   socialUser: SocialUser;
   @Output() isLogin = new EventEmitter();
   @Output() signUp = new EventEmitter();
-  //@Output() socialName = new EventEmitter<string>();
-
 
   constructor(private formBuilder: FormBuilder,
     private loginService: AuthService,
@@ -45,7 +43,6 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('username', this.socialUser.name);
         this.routes.navigate(['/weatherPage']);
         this.isLogin.emit(true);
-        //this.socialName.emit(user.name);
       }
     });
   }
@@ -77,6 +74,7 @@ export class LoginComponent implements OnInit {
   async onSubmit(formValues) {
     this.post = formValues;
     const output = await this.loginService.checkAuthenticated(this.post);
+    // If email and password is correct
     if (output) {
       this.routes.navigate(['/weatherPage']);
       this.isLogin.emit(true);
@@ -93,7 +91,6 @@ export class LoginComponent implements OnInit {
     this.dialog.open(PopUpComponent);
   }
 
-
   signInWithGoogle(): void {
     this.authServiceSocial.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
@@ -101,9 +98,4 @@ export class LoginComponent implements OnInit {
   signInWithFB(): void {
     this.authServiceSocial.signIn(FacebookLoginProvider.PROVIDER_ID);
   }
-
-  // signOut(): void {
-  //   this.authServiceSocial.signOut();
-  // }
-
 }

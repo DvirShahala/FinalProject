@@ -49,6 +49,7 @@ export class WeatherPageComponent implements OnInit {
     this.loading = false;
   }
 
+  // Get seven days forecast
   public getSevenDays(coordinates: any) {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -67,6 +68,7 @@ export class WeatherPageComponent implements OnInit {
     });
   }
 
+  // Get forecast for specific city
   async getSpecificWeather(name: any) {
     const wait = (ms) => new Promise(res => setTimeout(res, ms));
 
@@ -91,6 +93,7 @@ export class WeatherPageComponent implements OnInit {
     });
   }
 
+  // Get sunrise and sunset forecast
   public getSunrise(coordinates: any) {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -103,6 +106,7 @@ export class WeatherPageComponent implements OnInit {
     });
   }
 
+  // Get specific sunrise and sunset 
   public getSpecificSunrise(name: any) {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -125,6 +129,7 @@ export class WeatherPageComponent implements OnInit {
     return moment(this.timeAMFM, ["h:mm A"]).format("HH:mm");
   }
 
+  // Convert celsius to fahreneit
   public changeCelsiusToFahrenheit(Celsius: number) {
     return (Celsius * 1.8) + 32;
   }

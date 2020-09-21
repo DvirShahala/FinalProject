@@ -19,6 +19,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
+  // Check authenticate user
   async checkAuthenticated(userDetails: userLogin): Promise<boolean> {
     let parameters = new HttpParams().set('email', userDetails.email);
 
@@ -33,6 +34,7 @@ export class AuthService {
     });
   }
 
+  // Check if email in use
   async checkInUseEmail(email): Promise<boolean> {
     let parameters = new HttpParams().set('email', email);
 

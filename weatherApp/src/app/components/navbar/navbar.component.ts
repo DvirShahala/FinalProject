@@ -33,12 +33,12 @@ export class NavbarComponent implements OnInit {
     }
   }
 
+  // Get cities in search
   public getCities(namePrefix: any) {
     const httpOptions = {
       headers: new HttpHeaders({
         "x-rapidapi-host": "wft-geo-db.p.rapidapi.com",
         "x-rapidapi-key": "de1669beb6msh6a848aba1581ae0p12ee1bjsna7c1f0599054",
-        //"useQueryString": true
       })
     }
     const paramsBody = "&x-rapidapi-key=" + this.cityApiKey + "&limit=" + 10 + "&sort=" + "name" + "&namePrefix=" + namePrefix;
@@ -65,13 +65,13 @@ export class NavbarComponent implements OnInit {
     this.city.emit(cityName);
   }
 
+  // Check celsius or fahrenheit
   convert(celOrFah: string) {
     if (celOrFah == 'c') {
       this.celsius = true;
     } else {
       this.celsius = false;
     }
-    //this.celsius = !this.celsius;
     this.celsiusOrFahrenheit.emit(this.celsius);
   }
 
@@ -79,6 +79,7 @@ export class NavbarComponent implements OnInit {
     window.location.reload();
   }
 
+  // Logout and move to homepage
   logOut() {
     localStorage.removeItem('username');
     this.authServiceSocial.signOut();
