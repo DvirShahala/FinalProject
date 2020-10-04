@@ -20,10 +20,10 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   // Check authenticate user
-  async checkAuthenticated(userDetails: userLogin): Promise<boolean> {
+  checkAuthenticated(userDetails: userLogin): Promise<boolean> {
     let parameters = new HttpParams().set('email', userDetails.email);
 
-    return await this.http.get<User>(`${environment.BE_ENDPOINT}/users/specific`, { params: parameters }).toPromise().catch(err => console.log(err)).then((user: User) => {
+    return this.http.get<User>(`${environment.BE_ENDPOINT}/users/specific`, { params: parameters }).toPromise().catch(err => console.log(err)).then((user: User) => {
       if (user[0] != undefined) {
         if (userDetails.password == user[0].password) {
           localStorage.setItem('username', user[0].fullName);
@@ -35,10 +35,10 @@ export class AuthService {
   }
 
   // Check if email in use
-  async checkInUseEmail(email): Promise<boolean> {
+  checkInUseEmail(email): Promise<boolean> {
     let parameters = new HttpParams().set('email', email);
 
-    return await this.http.get<User>(`${environment.BE_ENDPOINT}/users/specific`, { params: parameters }).toPromise().catch(err => console.log(err)).then((user: User) => {
+    return this.http.get<User>(`${environment.BE_ENDPOINT}/users/specific`, { params: parameters }).toPromise().catch(err => console.log(err)).then((user: User) => {
       if (user[0] != undefined) {
         return true;
       } else {
@@ -47,14 +47,12 @@ export class AuthService {
     });
   }
 
-  async createAccount(user: User) {
-    await this.http.post(`${environment.BE_ENDPOINT}/users/`,
+  createAccount(user: User) {
+    this.http.post(`${environment.BE_ENDPOINT}/users/`,
       {
         fullName: user.fullName,
         email: user.email,
         password: user.password
-      }).toPromise().then();
+      }).toPromise();
   }
-
-
 }
