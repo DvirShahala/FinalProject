@@ -31,15 +31,9 @@ export class SignUpComponent implements OnInit {
     });
   }
 
-  checkUseEmail(control) {
-    // this.if_used = (this.authService.checkInUseEmail("dvir@gmail.com")) ? { 'alreadyInUse': true } : null;
-    // console.log(this.if_used);
-    // return this.if_used;
-  }
-
   async onSubmit(post) {
     await this.authService.createAccount(post);
-    window.location.reload();
+    window.location.href = window.location.hostname;
   }
 
   checkLengthPassword(control) {
