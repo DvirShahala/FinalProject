@@ -1,6 +1,5 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { WeatherService } from "../../services/weather/weather.service";
 import * as moment from "moment";
@@ -12,23 +11,20 @@ import * as moment from "moment";
 })
 export class WeatherPageComponent implements OnInit {
 
-  private apiKey: string;
-  public weatherSevenDays: any;
-  public sunriseSunset: any;
-  public i: number = 0;
-  public timeAMFM: string;
-  public if_celsius: boolean = true;
-  public loading: boolean = true;
-  public windSpeed: string;
-  public WindDirection: string;
-  public feelsLike: string;
-  public uvIndex: string;
-  public uvDetail: string;
-  public currentCity: string;
+  weatherSevenDays: any;
+  sunriseSunset: any;
+  i: number = 0;
+  timeAMFM: string;
+  if_celsius: boolean = true;
+  loading: boolean = true;
+  windSpeed: string;
+  WindDirection: string;
+  feelsLike: string;
+  uvIndex: string;
+  uvDetail: string;
+  currentCity: string;
 
-  constructor(private http: HttpClient, private routes: Router) {
-    this.apiKey = "b-Xq8MhhqNUWQT4016csTTQ2j--m8mksCwsnh8GfB-s";
-  }
+  constructor(private http: HttpClient, private routes: Router, private weatherSrv: WeatherService) { }
 
   ngOnInit(): void {
     if (navigator.geolocation) {
@@ -40,83 +36,42 @@ export class WeatherPageComponent implements OnInit {
     }
   }
 
-  async getAllData(coordinates: any) {
-    const wait = (ms) => new Promise(res => setTimeout(res, ms));
-    this.getSevenDays(coordinates);
-    this.getSunrise(coordinates);
-    await wait(2000);
-    this.setCardsDetails(this.weatherSevenDays);
-    this.loading = false;
-  }
+  getAllData(coordinates: any) {
+    const promise1 = this.weatherSrv.getSevenDays(coordinates).toPromise();
+    const promise2 = this.weatherSrv.getSunrise(coordinates).toPromise();
 
-  // Get seven days forecast
-  public getSevenDays(coordinates: any) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-      })
-    }
-    const paramsBody = "&latitude=" + coordinates.latitude + "&longitude=" + coordinates.longitude + "&apiKey=" + this.apiKey
+    Promise.all([promise1, promise2]).then(results => {
 
-    this.http.get("https://weather.ls.hereapi.com/weather/1.0/report.json?product=forecast_7days_simple" + paramsBody, httpOptions).toPromise().catch(err => console.log(err)).then(results => {
-      this.currentCity = results["dailyForecasts"]["forecastLocation"].city + ', ' + results["dailyForecasts"]["forecastLocation"].country;
-      this.weatherSevenDays = results["dailyForecasts"]["forecastLocation"]["forecast"];
-      for (const element of this.weatherSevenDays) {
-        this.weatherSevenDays[this.i].iconLink = this.weatherSevenDays[this.i].iconLink + "?apiKey=" + this.apiKey;
-        this.i++;
-      }
-      this.i = 0;
+      // Seven days result
+      this.currentCity = results[0]["dailyForecasts"]["forecastLocation"].city + ', ' + results[0]["dailyForecasts"]["forecastLocation"].country;
+      this.weatherSevenDays = results[0]["dailyForecasts"]["forecastLocation"]["forecast"];
+      this.setForecastImages(this.weatherSevenDays);
+      this.setCardsDetails(this.weatherSevenDays);
+
+      // Sunrise result
+      this.sunriseSunset = results[1]["astronomy"]["astronomy"];
+
+      // stop the loading spinner
+      this.loading = false;
     });
   }
 
   // Get forecast for specific city
-  async getSpecificWeather(name: any) {
-    const wait = (ms) => new Promise(res => setTimeout(res, ms));
+  getSpecificWeather(cityName: any) {
+    this.loading = true;
+    const promise1 = this.weatherSrv.getCitySunrise(cityName).toPromise();
+    const promise2 = this.weatherSrv.getCityWeather(cityName).toPromise();
 
-    this.getSpecificSunrise(name);
-    await wait(200);
+    Promise.all([promise1, promise2]).then(results => {
+      this.sunriseSunset = results[0]["astronomy"]["astronomy"];
 
-    const httpOptions = {
-      headers: new HttpHeaders({
-      })
-    }
-    const paramsBody = "&name=" + name + "&apiKey=" + this.apiKey
-
-    this.http.get("https://weather.ls.hereapi.com/weather/1.0/report.json?product=forecast_7days_simple" + paramsBody, httpOptions).toPromise().catch(err => console.log(err)).then(results => {
-      this.weatherSevenDays = results["dailyForecasts"]["forecastLocation"]["forecast"];
-      for (const element of this.weatherSevenDays) {
-        this.weatherSevenDays[this.i].iconLink = this.weatherSevenDays[this.i].iconLink + "?apiKey=" + this.apiKey;
-        this.i++;
-      }
-      this.currentCity = name;
+      this.weatherSevenDays = results[1]["dailyForecasts"]["forecastLocation"]["forecast"];
+      this.setForecastImages(this.weatherSevenDays);
       this.setCardsDetails(this.weatherSevenDays);
-      this.i = 0;
+
+      this.loading = false;
     });
-  }
-
-  // Get sunrise and sunset forecast
-  public getSunrise(coordinates: any) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-      })
-    }
-    const paramsBody = "&latitude=" + coordinates.latitude + "&longitude=" + coordinates.longitude + "&apiKey=" + this.apiKey
-
-    this.http.get("https://weather.ls.hereapi.com/weather/1.0/report.json?product=forecast_astronomy" + paramsBody, httpOptions).toPromise().catch(err => console.log(err)).then(results => {
-      this.sunriseSunset = results["astronomy"]["astronomy"];
-    });
-  }
-
-  // Get specific sunrise and sunset 
-  public getSpecificSunrise(name: any) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-      })
-    }
-    const paramsBody = "&name=" + name + "&apiKey=" + this.apiKey
-
-    this.http.get("https://weather.ls.hereapi.com/weather/1.0/report.json?product=forecast_astronomy" + paramsBody, httpOptions).toPromise().catch(err => console.log(err)).then(results => {
-      this.sunriseSunset = results["astronomy"]["astronomy"];
-    });
+    this.currentCity = cityName;
   }
 
   public getSunriseTime() {
@@ -142,7 +97,14 @@ export class WeatherPageComponent implements OnInit {
     this.uvDetail = weatherArr[0].uvDesc;
   }
 
-  convert(celsius: boolean) {
+  public convert(celsius: boolean) {
     this.if_celsius = celsius;
+  }
+
+  private setForecastImages(weatherArr: any) {
+    weatherArr.forEach(element => {
+      // Concatenate the api key with elememt icon link in order to set the correct image
+      element.iconLink = element.iconLink + "?apiKey=" + this.weatherSrv.getWeatherApikey();
+    });
   }
 }

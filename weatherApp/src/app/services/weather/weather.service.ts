@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 
@@ -8,39 +8,59 @@ import { map } from 'rxjs/operators';
 })
 export class WeatherService {
 
-  private apiKey: string;
-  public weatherSevenDays: any;
-  public sunriseSunset: any;
-  public getCityName: any;
-  public i: number = 0;
+  apiKey: string;
+  weatherSevenDays: any;
+  sunriseSunset: any;
+  getCityName: any;
+  i: number = 0;
 
-
-  constructor(private http: HttpClient, private routes: Router) {
+  constructor(private http: HttpClient) {
     this.apiKey = "b-Xq8MhhqNUWQT4016csTTQ2j--m8mksCwsnh8GfB-s";
   }
 
-
-  getAllData(coordinates: any) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-
-      })
-    }
-    const paramsBody = "&latitude=" + coordinates.latitude + "&longitude=" + coordinates.longitude + "&apiKey=" + this.apiKey
-
-    this.http.get("https://weather.ls.hereapi.com/weather/1.0/report.json?product=forecast_7days_simple" + paramsBody, httpOptions).toPromise().catch(err => console.log(err)).then(results => {
-      this.weatherSevenDays = results["dailyForecasts"]["forecastLocation"]["forecast"];
-      for (const element of this.weatherSevenDays) {
-        this.weatherSevenDays[this.i].iconLink = this.weatherSevenDays[this.i].iconLink + "?apiKey=" + this.apiKey;
-        this.i++;
-      }
-    });
-
-    this.http.get("https://weather.ls.hereapi.com/weather/1.0/report.json?product=forecast_astronomy" + paramsBody, httpOptions).toPromise().catch(err => console.log(err)).then(results => {
-      this.sunriseSunset = results["astronomy"]["astronomy"];
-    });
-    
+  getWeatherApikey() {
+    return this.apiKey;
   }
 
+  // Get seven days forecast
+  getSevenDays(coordinates: any) {
 
+    const params = new HttpParams()
+    .set('latitude', coordinates.latitude)
+    .set('longitude', coordinates.longitude)
+    .set('apiKey', this.apiKey);
+
+    return this.http.get("https://weather.ls.hereapi.com/weather/1.0/report.json?product=forecast_7days_simple", {params: params});
+  }
+
+  // Get specific sunrise and sunset 
+  getCitySunrise(name: any) {
+
+    const params = new HttpParams()
+    .set('name', name)
+    .set('apiKey', this.apiKey);
+
+    return this.http.get("https://weather.ls.hereapi.com/weather/1.0/report.json?product=forecast_astronomy", {params: params});
+  }
+
+  // Get forecast for specific city
+  getCityWeather(name: any) {
+
+    const params = new HttpParams()
+    .set('name', name)
+    .set('apiKey', this.apiKey);
+
+    return this.http.get("https://weather.ls.hereapi.com/weather/1.0/report.json?product=forecast_7days_simple", {params: params});
+  }
+
+  //Get sunrise and sunset forecast
+  public getSunrise(coordinates: any) {
+
+    const params = new HttpParams()
+    .set('latitude', coordinates.latitude)
+    .set('longitude', coordinates.longitude)
+    .set('apiKey', this.apiKey);
+
+    return this.http.get("https://weather.ls.hereapi.com/weather/1.0/report.json?product=forecast_astronomy" , {params: params});
+  }
 }
