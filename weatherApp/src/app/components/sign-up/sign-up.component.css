@@ -18,7 +18,7 @@
 a {
   text-decoration: none;
   cursor: pointer;
-  color: #253CFF;
+  color: #253cff;
 }
 a:hover {
   text-decoration: underline;
@@ -26,8 +26,3 @@ a:hover {
 .logo {
   width: 8.5%;
 }
-/*.signUpIcon {
-  height: 25px;
-  width: 25px;
-  padding-bottom: 3px;
-}*/

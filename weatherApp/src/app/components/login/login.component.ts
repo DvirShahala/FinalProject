@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
     this.createForm();
     this.authServiceSocial.authState.subscribe((user) => {
       this.socialUser = user;
-      if(user!=null) {
+      if (user != null) {
         localStorage.setItem('username', this.socialUser.name);
         this.routes.navigate(['/weatherPage']);
         this.isLogin.emit(true);

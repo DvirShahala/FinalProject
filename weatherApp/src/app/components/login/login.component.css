@@ -1,5 +1,5 @@
 .mainCard {
-  background-color: rgba(255, 255, 255, 0.80);
+  background-color: rgba(255, 255, 255, 0.8);
   max-width: 25.6%;
   width: 30%;
   margin: 2% auto;
@@ -19,7 +19,7 @@
 }
 a {
   cursor: pointer;
-  color: #253CFF;
+  color: #253cff;
 }
 a:hover {
   text-decoration: underline;
@@ -28,7 +28,7 @@ a:hover {
   width: 8.5%;
 }
 .fb {
-  background-color: #3B5998;
+  background-color: #3b5998;
   color: white;
 }
 .google {

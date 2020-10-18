@@ -26,41 +26,41 @@ export class WeatherService {
   getSevenDays(coordinates: any) {
 
     const params = new HttpParams()
-    .set('latitude', coordinates.latitude)
-    .set('longitude', coordinates.longitude)
-    .set('apiKey', this.apiKey);
+      .set('latitude', coordinates.latitude)
+      .set('longitude', coordinates.longitude)
+      .set('apiKey', this.apiKey);
 
-    return this.http.get("https://weather.ls.hereapi.com/weather/1.0/report.json?product=forecast_7days_simple", {params: params});
+    return this.http.get("https://weather.ls.hereapi.com/weather/1.0/report.json?product=forecast_7days_simple", { params: params });
   }
 
   // Get specific sunrise and sunset 
   getCitySunrise(name: any) {
 
     const params = new HttpParams()
-    .set('name', name)
-    .set('apiKey', this.apiKey);
+      .set('name', name)
+      .set('apiKey', this.apiKey);
 
-    return this.http.get("https://weather.ls.hereapi.com/weather/1.0/report.json?product=forecast_astronomy", {params: params});
+    return this.http.get("https://weather.ls.hereapi.com/weather/1.0/report.json?product=forecast_astronomy", { params: params });
   }
 
   // Get forecast for specific city
   getCityWeather(name: any) {
 
     const params = new HttpParams()
-    .set('name', name)
-    .set('apiKey', this.apiKey);
+      .set('name', name)
+      .set('apiKey', this.apiKey);
 
-    return this.http.get("https://weather.ls.hereapi.com/weather/1.0/report.json?product=forecast_7days_simple", {params: params});
+    return this.http.get("https://weather.ls.hereapi.com/weather/1.0/report.json?product=forecast_7days_simple", { params: params });
   }
 
   //Get sunrise and sunset forecast
   public getSunrise(coordinates: any) {
 
     const params = new HttpParams()
-    .set('latitude', coordinates.latitude)
-    .set('longitude', coordinates.longitude)
-    .set('apiKey', this.apiKey);
+      .set('latitude', coordinates.latitude)
+      .set('longitude', coordinates.longitude)
+      .set('apiKey', this.apiKey);
 
-    return this.http.get("https://weather.ls.hereapi.com/weather/1.0/report.json?product=forecast_astronomy" , {params: params});
+    return this.http.get("https://weather.ls.hereapi.com/weather/1.0/report.json?product=forecast_astronomy", { params: params });
   }
 }

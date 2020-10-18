@@ -25,7 +25,7 @@ import { GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-logi
     PopUpComponent,
     WeatherPageComponent,
     MomentPipe,
-    NavbarComponent  
+    NavbarComponent
   ],
   imports: [
     BrowserAnimationsModule,

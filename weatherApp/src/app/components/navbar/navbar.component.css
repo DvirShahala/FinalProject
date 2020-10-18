@@ -1,53 +1,40 @@
 * {
-    color: white;
+  color: white;
 }
 .mat-toolbar {
-    background-color: #113076;
-    min-height: 64px;
-    max-height: 64px;
+  background-color: #113076;
+  min-height: 64px;
+  max-height: 64px;
 }
 .spacer {
-    flex: 1 1 auto;
+  flex: 1 1 auto;
 }
 .icon {
-    height: 100%;
-    width: 5%;
-    cursor: pointer;
+  height: 100%;
+  width: 5%;
+  cursor: pointer;
 }
 .temper {
-    cursor: pointer;
+  cursor: pointer;
 }
 .logOut {
-    background-color: #3d8db8;
-    font-size: 16px;
+  background-color: #3d8db8;
+  font-size: 16px;
 }
 .logOut:hover {
-    background-color: #4e68a5c0;
+  background-color: #4e68a5c0;
 }
 .options {
-    color: black;
+  color: black;
 }
 a {
-    cursor: pointer;
+  cursor: pointer;
 }
 .searchForm {
-    min-width: 150px;
-    max-width: 350px;
-    width: 100%;
+  min-width: 150px;
+  max-width: 350px;
+  width: 100%;
 }
 .full-width {
-    width: 100%;
+  width: 100%;
 }
-/*
-::placeholder { 
-     Chrome and firefox 
-    color: white;
-}
-:-ms-input-placeholder { 
-    Internet Explorer 10-11
-    color: white;
-}
-::-ms-input-placeholder { 
-     Microsoft Edge
-    color: white;
-}*/
