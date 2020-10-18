@@ -5,6 +5,7 @@ import { map, startWith } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SocialAuthService } from "angularx-social-login";
 import { CitiesService } from "../../services/cities/cities.service";
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-navbar',
@@ -28,9 +29,11 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
   }
 
+  debouncedGetCitities = _.debounce(params => this.getCities(params), 400);
+
   async onKeyup(event) {
     if (event.length >= 3) {
-      this.getCities(event);
+      this.debouncedGetCitities(event);
     }
   }
 
