@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  //BE_ENDPOINT: "http://localhost:3000/api"
-  BE_ENDPOINT: "https://weathairapp-be.herokuapp.com/api"
+  BE_ENDPOINT: "http://localhost:3000/api"
+  //BE_ENDPOINT: "https://weathairapp-be.herokuapp.com/api"
 };
 
 /*

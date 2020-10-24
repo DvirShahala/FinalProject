@@ -7,6 +7,8 @@ import { PopUpComponent } from 'src/app/components/pop-up/pop-up.component';
 import { SocialAuthService } from "angularx-social-login";
 import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
 import { SocialUser } from "angularx-social-login";
+import { CookieService } from 'ngx-cookie-service';
+import * as moment from "moment";
 
 export interface userLogin {
   email: string;
@@ -32,15 +34,17 @@ export class LoginComponent implements OnInit {
     private loginService: AuthService,
     private routes: Router,
     public dialog: MatDialog,
-    private authServiceSocial: SocialAuthService) { }
+    private authServiceSocial: SocialAuthService,
+    private cookie: CookieService) { }
 
   ngOnInit() {
-    localStorage.removeItem('username');
+    localStorage.removeItem('id_token');
+    localStorage.removeItem('expires_at');
     this.createForm();
     this.authServiceSocial.authState.subscribe((user) => {
       this.socialUser = user;
       if (user != null) {
-        localStorage.setItem('username', this.socialUser.name);
+        localStorage.setItem('id_token', this.socialUser.name);
         this.routes.navigate(['/weatherPage']);
         this.isLogin.emit(true);
       }
@@ -73,15 +77,24 @@ export class LoginComponent implements OnInit {
 
   async onSubmit(formValues) {
     this.post = formValues;
-    const output = await this.loginService.checkAuthenticated(this.post);
+    const isAuth: any = await this.loginService.checkAuthenticated(this.post);
     // If email and password is correct
-    if (output) {
+    if (isAuth) {
+      this.setSession(isAuth);
       this.routes.navigate(['/weatherPage']);
       this.isLogin.emit(true);
     } else {
       this.invalidErrorMsg = 'Invalid username or password';
     }
   }
+
+  private setSession(authResult) {
+    const expiresAt = moment().add(authResult.expiresIn, 'second');
+
+    localStorage.setItem('id_token', authResult.idToken);
+    localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()));
+  }
+
 
   signUpRequest() {
     this.signUp.emit(true);

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-root',
@@ -10,10 +11,10 @@ export class AppComponent implements OnInit {
   isLogin: boolean = false;
   isSignUp: boolean = false;
 
-  constructor() { }
+  constructor(private cookie: CookieService) { }
 
   ngOnInit() {
-    if (localStorage.getItem('username') != null) {
+    if (localStorage.getItem('id_token') != null) {
       this.isLogin = true;
     }
   }

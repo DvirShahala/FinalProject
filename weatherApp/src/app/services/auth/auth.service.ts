@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { userLogin } from '../../components/login/login.component';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { CookieService } from 'ngx-cookie-service';
 
 
 interface User {
@@ -17,22 +18,16 @@ export class AuthService {
 
   public users: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private cookie: CookieService) { }
 
   // Check authenticate user
-  checkAuthenticated(userDetails: userLogin): Promise<boolean> {
-    let parameters = new HttpParams().set('email', userDetails.email);
-
-    return this.http.get<User>(`${environment.BE_ENDPOINT}/users/specific`, { params: parameters }).toPromise().catch(err => console.log(err)).then((user: User) => {
-      if (user[0] != undefined) {
-        if (userDetails.password == user[0].password) {
-          localStorage.setItem('username', user[0].fullName);
-          return true;
-        }
-      }
-      return false;
-    });
+  checkAuthenticated(userDetails: userLogin) {
+    return this.http.post(`${environment.BE_ENDPOINT}/users/login`, userDetails)
+      .toPromise()
+      .catch(err => console.log(err))
+      .then();
   }
+
 
   // Check if email in use
   checkInUseEmail(email): Promise<boolean> {
