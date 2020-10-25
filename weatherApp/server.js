@@ -1,10 +1,10 @@
-// const express = require('express');
-// const app = express();
+const express = require('express');
+const app = express();
 
-// app.use(express.static('./dist/weatherApp'));
-// app.get('/*', function (req, res) {
-//     res.sendFile('index.html', { root: './dist/weatherApp' }
-//     );
-// });
+app.use(express.static('./dist/weather-app'));
+app.get('/*', function (req, res) {
+    res.sendFile('index.html', { root: './dist/weather-app' }
+    );
+});
 
-// app.listen(process.env.PORT || 8080);
+app.listen(process.env.PORT || 8080);
