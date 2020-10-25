@@ -1,9 +1,9 @@
 const express = require('express');
 const app = express();
 
-app.use(express.static('./weatherApp/dist/weatherApp'));
+app.use(express.static('./weatherApp/dist/weather-app'));
 app.get('/*', function (req, res) {
-    res.sendFile('index.html', { root: './weatherApp/dist/weatherApp' }
+    res.sendFile('index.html', { root: './weatherApp/dist/weather-app' }
     );
 });
 
