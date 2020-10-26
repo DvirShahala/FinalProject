@@ -7,7 +7,7 @@
   },
   "scripts": {
     "ng": "ng",
-    "heroku-postbuild": "concurrently \"npm:step1\" \"npm:step2\"",
+    "heroku-postbuild": "cd \\weatherApp && ng build",
     "step1": "cd \\weatherApp",
     "step2": "ng build",
     "start": "node server.js",
