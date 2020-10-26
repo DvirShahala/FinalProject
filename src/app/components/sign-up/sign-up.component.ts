@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { CookieService } from 'ngx-cookie-service';
-
 
 @Component({
   selector: 'app-sign-up',
@@ -17,7 +15,7 @@ export class SignUpComponent implements OnInit {
   post: any;
   if_used: any;
 
-  constructor(private formBuilder: FormBuilder, private routes: Router, private authService: AuthService, private cookie: CookieService) { }
+  constructor(private formBuilder: FormBuilder, private routes: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
     localStorage.removeItem('id_token');

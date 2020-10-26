@@ -5,7 +5,6 @@ import { map, startWith } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SocialAuthService } from "angularx-social-login";
 import { CitiesService } from "../../services/cities/cities.service";
-import { CookieService } from 'ngx-cookie-service';
 import * as _ from 'lodash';
 
 @Component({
@@ -23,7 +22,7 @@ export class NavbarComponent implements OnInit {
   @Output() city = new EventEmitter<string>();
   @Output() celsiusOrFahrenheit = new EventEmitter<boolean>();
 
-  constructor(private http: HttpClient, private authServiceSocial: SocialAuthService, private citiesSrv: CitiesService, private cookie: CookieService) {
+  constructor(private http: HttpClient, private authServiceSocial: SocialAuthService, private citiesSrv: CitiesService) {
     this.cityApiKey = "de1669beb6msh6a848aba1581ae0p12ee1bjsna7c1f0599054";
   }
 

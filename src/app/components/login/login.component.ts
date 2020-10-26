@@ -7,7 +7,6 @@ import { PopUpComponent } from 'src/app/components/pop-up/pop-up.component';
 import { SocialAuthService } from "angularx-social-login";
 import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
 import { SocialUser } from "angularx-social-login";
-import { CookieService } from 'ngx-cookie-service';
 import * as moment from "moment";
 
 export interface userLogin {
@@ -34,8 +33,7 @@ export class LoginComponent implements OnInit {
     private loginService: AuthService,
     private routes: Router,
     public dialog: MatDialog,
-    private authServiceSocial: SocialAuthService,
-    private cookie: CookieService) { }
+    private authServiceSocial: SocialAuthService) { }
 
   ngOnInit() {
     localStorage.removeItem('id_token');

@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { userLogin } from '../../components/login/login.component';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { CookieService } from 'ngx-cookie-service';
-
 
 interface User {
   email: string;
@@ -18,7 +16,7 @@ export class AuthService {
 
   public users: any;
 
-  constructor(private http: HttpClient, private cookie: CookieService) { }
+  constructor(private http: HttpClient) { }
 
   // Check authenticate user
   checkAuthenticated(userDetails: userLogin) {

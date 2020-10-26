@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-root',
@@ -7,11 +6,11 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'WeatherApp';
+  title = 'weather-app';
   isLogin: boolean = false;
   isSignUp: boolean = false;
 
-  constructor(private cookie: CookieService) { }
+  constructor() { }
 
   ngOnInit() {
     if (localStorage.getItem('id_token') != null) {
