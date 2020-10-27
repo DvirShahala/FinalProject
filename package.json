@@ -7,7 +7,7 @@
   },
   "scripts": {
     "ng": "ng",
-    "heroku-postbuild": "ng build --prod",
+    "heroku-postbuild": "ng build",
     "start": "node server.js",
     "test": "ng test",
     "lint": "ng lint",
