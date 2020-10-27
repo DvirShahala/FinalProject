@@ -16,6 +16,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { NgMatSearchBarModule } from 'ng-mat-search-bar';
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 import { GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,10 @@ import { GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-logi
           {
             id: FacebookLoginProvider.PROVIDER_ID,
             provider: new FacebookLoginProvider('646908969284899')
+          },
+          {
+            provide: LocationStrategy,
+            useClass: HashLocationStrategy
           }
         ],
       } as SocialAuthServiceConfig,
