@@ -9,8 +9,8 @@ import { AuthGuardGuard } from './guards/auth/auth-guard.guard'
 const routes: Routes = [
   // { path: 'login', component: LoginComponent },
   // { path: 'signUp', component: SignUpComponent },
-  { path: 'weatherPage', component: WeatherPageComponent, canActivate: [AuthGuardGuard] }
-  //{ path: '**', redirectTo: 'weatherPage'}
+  { path: 'weatherPage', component: WeatherPageComponent, canActivate: [AuthGuardGuard] },
+  { path: '**', redirectTo: 'index.html' }
 ];
 
 @NgModule({
