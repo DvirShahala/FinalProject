@@ -34,7 +34,8 @@ export class SignUpComponent implements OnInit {
 
   async onSubmit(post) {
     await this.authService.createAccount(post);
-    window.location.href = window.location.hostname;
+    //window.location.href = window.location.hostname;
+    window.location.href = window.location.href;
   }
 
   checkLengthPassword(control) {
