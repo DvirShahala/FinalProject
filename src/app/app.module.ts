@@ -9,7 +9,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
-import { PopUpComponent } from './components/pop-up/pop-up.component';
 import { MomentPipe } from './pipes/moment/moment.pipe';
 import { WeatherPageComponent } from './components/weather-page/weather-page.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -23,7 +22,6 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     AppComponent,
     LoginComponent,
     SignUpComponent,
-    PopUpComponent,
     WeatherPageComponent,
     MomentPipe,
     NavbarComponent

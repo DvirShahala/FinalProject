@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { MatDialog } from '@angular/material/dialog';
-import { PopUpComponent } from 'src/app/components/pop-up/pop-up.component';
 import { SocialAuthService } from "angularx-social-login";
 import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
 import { SocialUser } from "angularx-social-login";
@@ -96,10 +95,6 @@ export class LoginComponent implements OnInit {
 
   signUpRequest() {
     this.signUp.emit(true);
-  }
-
-  openDialog() {
-    this.dialog.open(PopUpComponent);
   }
 
   signInWithGoogle(): void {

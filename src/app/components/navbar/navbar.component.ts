@@ -69,7 +69,6 @@ export class NavbarComponent implements OnInit {
   }
 
   refresh() {
-    //window.location.href = "/#/weatherPage";
     window.location.reload();
   }
 
