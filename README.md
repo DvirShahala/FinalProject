@@ -1,6 +1,7 @@
 # Weather App
 
 The right way to check the weather!
+
 This application is for weather forecast according to your current or chosen location.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.x
