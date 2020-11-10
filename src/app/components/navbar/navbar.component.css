@@ -3,8 +3,6 @@
 }
 .mat-toolbar {
   background-color: #113076;
-  min-height: 64px;
-  max-height: 64px;
 }
 .spacer {
   flex: 1 1 auto;
@@ -19,7 +17,7 @@
 }
 .logOut {
   background-color: #3d8db8;
-  font-size: 16px;
+  font-size: 0.8em;
 }
 .logOut:hover {
   background-color: #4e68a5c0;
@@ -31,8 +29,7 @@ a {
   cursor: pointer;
 }
 .searchForm {
-  min-width: 150px;
-  max-width: 350px;
+  max-width: 25%;
   width: 100%;
 }
 .full-width {

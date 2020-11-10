@@ -4,7 +4,7 @@
   width: 30%;
   margin: 2% auto;
   text-align: center;
-  border-radius: 10px;
+  border-radius: 2%;
   padding: 35px 55px 25px 55px;
 }
 .background-screen {
@@ -14,8 +14,6 @@
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  /* filter: blur(8px);
-  -webkit-filter: blur(8px); */
 }
 a {
   cursor: pointer;
@@ -54,4 +52,10 @@ a:hover {
   font-size: 17px;
   line-height: 20px;
   text-decoration: none;
+}
+
+@media (max-width: 800px) {
+  .logo {
+    width: 20%;
+  }
 }

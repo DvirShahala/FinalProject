@@ -4,7 +4,7 @@
   width: 30%;
   margin: 2% auto;
   text-align: center;
-  border-radius: 10px;
+  border-radius: 2%;
   padding: 35px 55px 25px 55px;
 }
 .background-screen {
@@ -25,4 +25,10 @@ a:hover {
 }
 .logo {
   width: 8.5%;
+}
+
+@media (max-width: 800px) {
+  .logo {
+    width: 20%;
+  }
 }
